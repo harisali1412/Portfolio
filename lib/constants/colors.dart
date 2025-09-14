@@ -1,13 +1,40 @@
 import 'dart:ui';
 
 class CustomColor {
-  static const Color scaffoldBg = Color(0xff252734);
-  static const Color bgLight1 = Color(0xff333646);
-  static const Color bgLight2 = Color(0xff424657);
-  static const Color textFieldBg = Color(0xffCBC9CE);
-  static const Color hintDark = Color(0xff666874);
-  static const Color yellowSecondary = Color(0xffFFC25C);
-  static const Color yellowPrimary = Color(0xffFFAF29);
-  static const Color whiteSecondary = Color(0xffC8C9CE);
-  static const Color whitePrimary = Color(0xffEAEAEB);
+  // Primary Colors
+  static const Color primary = Color(0xFF6366F1); // Indigo
+  static const Color primaryDark = Color(0xFF4F46E5);
+  static const Color secondary = Color(0xFF10B981); // Emerald
+  
+  // Background Colors
+  static const Color scaffoldBg = Color(0xFF0F172A); // Slate 900
+  static const Color bgLight1 = Color(0xFF1E293B); // Slate 800
+  static const Color bgLight2 = Color(0xFF334155); // Slate 700
+  static const Color bgLight3 = Color(0xFF475569); // Slate 600
+  
+  // Text Colors
+  static const Color textPrimary = Color(0xFFF8FAFC); // Slate 50
+  static const Color textSecondary = Color(0xFFCBD5E1); // Slate 300
+  static const Color textMuted = Color(0xFF94A3B8); // Slate 400
+  
+  // Accent Colors
+  static const Color accent = Color(0xFFF59E0B); // Amber 500
+  static const Color accentLight = Color(0xFFFCD34D); // Amber 300
+  
+  // Status Colors
+  static const Color success = Color(0xFF10B981); // Emerald 500
+  static const Color warning = Color(0xFFF59E0B); // Amber 500
+  static const Color error = Color(0xFFEF4444); // Red 500
+  
+  // Gradient Colors
+  static const Color gradientStart = Color(0xFF6366F1);
+  static const Color gradientEnd = Color(0xFF8B5CF6);
+  
+  // Legacy colors for backward compatibility
+  static const Color yellowSecondary = accent;
+  static const Color yellowPrimary = accent;
+  static const Color whiteSecondary = textSecondary;
+  static const Color whitePrimary = textPrimary;
+  static const Color textFieldBg = Color(0xFF1E293B);
+  static const Color hintDark = textMuted;
 }

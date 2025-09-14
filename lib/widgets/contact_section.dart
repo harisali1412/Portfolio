@@ -71,68 +71,155 @@ class _ContactSectionState extends State<ContactSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      margin: const EdgeInsets.all(16),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Contact Me",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            _buildTextField(
-              controller: _nameController,
-              label: "Name",
-              icon: Icons.person,
-              keyboardType: TextInputType.name,
-            ),
-            const SizedBox(height: 10),
-            _buildTextField(
-               controller: _emailController,
-              label: "Email",
-              icon: Icons.email,
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(height: 10),
-            _buildTextField(
-              controller: _messageController,
-              label: "Message",
-              icon: Icons.message,
-              maxLines: 4,
-              keyboardType: TextInputType.multiline,
-            ),
-            const SizedBox(height: 20),
-            _buildSubmitButton(),
-            const SizedBox(height: 20),
-            Center(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: snsLinks.entries.map((entry) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: IconButton(
-                        icon: _getIcon(entry.key),
-                        iconSize: 32,
-                        onPressed: () async {
-                          final url = Uri.parse(entry.value);
-                          if (!await canLaunchUrl(url)) return;
-                          await launchUrl(url, mode: LaunchMode.externalApplication);
-                        },
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ),
-            ),
-          ],
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(80, 80, 80, 80),
+      decoration: const BoxDecoration(
+        color: CustomColor.bgLight1,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(32),
+          topRight: Radius.circular(32),
         ),
+      ),
+      child: Column(
+        children: [
+          // Section Header
+          const Text(
+            "Get In Touch",
+            style: TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+              color: CustomColor.textPrimary,
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            "Let's discuss your project and see how I can help",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 18,
+              color: CustomColor.textMuted,
+              height: 1.5,
+            ),
+          ),
+          const SizedBox(height: 60),
+
+          // Contact Form and Social Links
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 800),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Contact Form
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    padding: const EdgeInsets.all(32),
+                    decoration: BoxDecoration(
+                      color: CustomColor.bgLight2,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: CustomColor.bgLight3.withValues(alpha: 0.3),
+                        width: 1,
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Send a Message",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600,
+                            color: CustomColor.textPrimary,
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        _buildTextField(
+                          controller: _nameController,
+                          label: "Name",
+                          icon: Icons.person,
+                          keyboardType: TextInputType.name,
+                        ),
+                        const SizedBox(height: 16),
+                        _buildTextField(
+                          controller: _emailController,
+                          label: "Email",
+                          icon: Icons.email,
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                        const SizedBox(height: 16),
+                        _buildTextField(
+                          controller: _messageController,
+                          label: "Message",
+                          icon: Icons.message,
+                          maxLines: 4,
+                          keyboardType: TextInputType.multiline,
+                        ),
+                        const SizedBox(height: 24),
+                        _buildSubmitButton(),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 40),
+
+                // Social Links
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Connect With Me",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                          color: CustomColor.textPrimary,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      const Text(
+                        "Feel free to reach out through any of these platforms",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: CustomColor.textMuted,
+                          height: 1.5,
+                        ),
+                      ),
+                      const SizedBox(height: 32),
+                      Wrap(
+                        spacing: 16,
+                        runSpacing: 16,
+                        children: snsLinks.entries.map((entry) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: CustomColor.bgLight2,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: CustomColor.bgLight3.withValues(alpha: 0.3),
+                                width: 1,
+                              ),
+                            ),
+                            child: IconButton(
+                              icon: _getIcon(entry.key),
+                              iconSize: 24,
+                              onPressed: () async {
+                                final url = Uri.parse(entry.value);
+                                if (!await canLaunchUrl(url)) return;
+                                await launchUrl(url, mode: LaunchMode.externalApplication);
+                              },
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -148,10 +235,25 @@ class _ContactSectionState extends State<ContactSection> {
       controller: controller,
       keyboardType: keyboardType,
       maxLines: maxLines,
+      style: const TextStyle(color: CustomColor.textPrimary),
       decoration: InputDecoration(
         labelText: label,
-        prefixIcon: Icon(icon),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+        labelStyle: const TextStyle(color: CustomColor.textMuted),
+        prefixIcon: Icon(icon, color: CustomColor.textMuted),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: CustomColor.bgLight3),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: CustomColor.bgLight3.withValues(alpha: 0.5)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: CustomColor.primary),
+        ),
+        filled: true,
+        fillColor: CustomColor.bgLight1,
       ),
     );
   }
@@ -161,18 +263,16 @@ class _ContactSectionState extends State<ContactSection> {
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: CustomColor.yellowPrimary,
-          foregroundColor: CustomColor.whitePrimary,
+          backgroundColor: CustomColor.primary,
+          foregroundColor: CustomColor.textPrimary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 30),
-          shadowColor: Colors.blueAccent.withOpacity(0.4),
-          elevation: 6,
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
         ),
         onPressed: _submitForm,
         child: const Text(
-          "Submit",
+          "Send Message",
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
       ),
@@ -182,19 +282,19 @@ class _ContactSectionState extends State<ContactSection> {
   Widget _getIcon(String key) {
     switch (key) {
       case "github":
-        return Image.asset(SnsLinks.githubImage, width: 32, height: 32);
+        return Image.asset(SnsLinks.githubImage, width: 24, height: 24);
       case "linkedin":
-        return Image.asset(SnsLinks.linkedinImage, width: 32, height: 32);
+        return Image.asset(SnsLinks.linkedinImage, width: 24, height: 24);
       case "facebook":
-        return Image.asset(SnsLinks.facebookImage, width: 32, height: 32);
+        return Image.asset(SnsLinks.facebookImage, width: 24, height: 24);
       case "instagram":
-        return Image.asset(SnsLinks.instagramImage, width: 32, height: 32);
+        return Image.asset(SnsLinks.instagramImage, width: 24, height: 24);
       case "whatsapp":
-        return Image.asset(SnsLinks.whatsappImage, width: 32, height: 32);
+        return Image.asset(SnsLinks.whatsappImage, width: 24, height: 24);
       case "x":
-        return Image.asset(SnsLinks.xImage, width: 32, height: 32);
+        return Image.asset(SnsLinks.xImage, width: 24, height: 24);
       default:
-        return const Icon(Icons.link, size: 32);
+        return const Icon(Icons.link, size: 24, color: CustomColor.textPrimary);
     }
   }
 }

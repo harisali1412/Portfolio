@@ -9,67 +9,129 @@ class ProjectsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 700;
+    final horizontalPadding = isMobile ? 16.0 : 80.0;
+    final verticalPadding = isMobile ? 32.0 : 80.0;
 
     return Container(
       width: screenWidth,
-      padding: const EdgeInsets.fromLTRB(25, 40, 25, 60),
+      padding: EdgeInsets.fromLTRB(
+        horizontalPadding, verticalPadding, horizontalPadding, verticalPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Work Projects Title
-          const Padding(
-            padding: EdgeInsets.only(bottom: 15),
-            child: Text(
-              "Work Projects",
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: CustomColor.whitePrimary,
+          // Section Header
+          Text(
+            "Featured Projects",
+            style: TextStyle(
+              fontSize: isMobile ? 24 : 36,
+              fontWeight: FontWeight.bold,
+              color: CustomColor.textPrimary,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            "Here are some of the projects I have worked on",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: isMobile ? 15 : 18,
+              color: CustomColor.textMuted,
+              height: 1.5,
+            ),
+          ),
+          SizedBox(height: isMobile ? 32 : 60),
+
+          // Projects Grid
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1200),
+            child: isMobile
+                ? Column(
+                    children: [
+                      for (int i = 0; i < workProjectUtils.length; i++)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 24),
+                          child: AnimatedOpacity(
+                            duration: const Duration(milliseconds: 300),
+                            opacity: 1.0,
+                            child: ProjectCard(project: workProjectUtils[i]),
+                          ),
+                        ),
+                    ],
+                  )
+                : Wrap(
+                    spacing: 32,
+                    runSpacing: 32,
+                    alignment: WrapAlignment.center,
+                    children: [
+                      for (int i = 0; i < workProjectUtils.length; i++)
+                        AnimatedOpacity(
+                          duration: const Duration(milliseconds: 300),
+                          opacity: 1.0,
+                          child: ProjectCard(project: workProjectUtils[i]),
+                        ),
+                    ],
+                  ),
+          ),
+
+          SizedBox(height: isMobile ? 24 : 40),
+
+          // Call to Action
+          Container(
+            padding: EdgeInsets.all(isMobile ? 16 : 24),
+            decoration: BoxDecoration(
+              color: CustomColor.bgLight1,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: CustomColor.bgLight2.withValues(alpha: 0.3),
+                width: 1,
               ),
             ),
-          ),
-
-          const SizedBox(height: 10),
-
-          const Text(
-            "Here are some of the projects I have worked on.",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-              color: CustomColor.whiteSecondary,
-            ),
-          ),
-
-          const SizedBox(height: 40),
-
-          // Work Projects Card
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 900),
-            child: Wrap(
-              spacing: 25,
-              runSpacing: 25,
-              alignment: WrapAlignment.center,
+            child: Column(
               children: [
-                for (int i = 0; i < workProjectUtils.length; i++)
-                  AnimatedOpacity(
-                    duration: const Duration(milliseconds: 300),
-                    opacity: 1.0,
-                    child: ProjectCard(project: workProjectUtils[i]),
+                Text(
+                  "Interested in working together?",
+                  style: TextStyle(
+                    fontSize: isMobile ? 16 : 20,
+                    fontWeight: FontWeight.w600,
+                    color: CustomColor.textPrimary,
                   ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  "Let's discuss your project and see how I can help bring your ideas to life.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: isMobile ? 13 : 16,
+                    color: CustomColor.textMuted,
+                    height: 1.5,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: CustomColor.primary,
+                      foregroundColor: CustomColor.textPrimary,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: isMobile ? 0 : 32,
+                        vertical: isMobile ? 12 : 16,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Text(
+                      "Get in Touch",
+                      style: TextStyle(
+                        fontSize: isMobile ? 14 : 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
               ],
-            ),
-          ),
-
-          const SizedBox(height: 10),
-
-          // Instruction Text
-          const Text(
-            "📌 Tap on a project image to open its GitHub or live link.",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              fontStyle: FontStyle.italic,
-              color: CustomColor.whiteSecondary,
             ),
           ),
         ],

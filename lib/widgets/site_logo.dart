@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/colors.dart';
 
 class SiteLogo extends StatelessWidget {
   const SiteLogo({super.key, this.onTap});
@@ -9,15 +10,36 @@ class SiteLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        width: 100,
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            image: AssetImage('assets/images/profile.png'),
-            fit: BoxFit.contain, // Ensures the entire image appears
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              gradient: const LinearGradient(
+                colors: [CustomColor.primary, CustomColor.gradientEnd],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: const Icon(
+              Icons.code,
+              color: CustomColor.textPrimary,
+              size: 24,
+            ),
           ),
-        ),
+          const SizedBox(width: 12),
+          const Text(
+            "Haris",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: CustomColor.textPrimary,
+            ),
+          ),
+        ],
       ),
     );
   }

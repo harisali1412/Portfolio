@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../styles/style.dart';
+import '../constants/colors.dart';
 import 'site_logo.dart';
 
 class HeaderMobile extends StatelessWidget {
@@ -13,21 +13,42 @@ class HeaderMobile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 40),
       child: Container(
-        height: 60,
-        margin: const EdgeInsets.symmetric(horizontal: 15),
-        decoration: kHeaderDecoration, // Keep color same as desktop
+        height: 70,
+        margin: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        decoration: BoxDecoration(
+          color: CustomColor.bgLight1.withValues(alpha: 0.9),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: CustomColor.bgLight2.withValues(alpha: 0.3),
+            width: 1,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              blurRadius: 20,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
         child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: SiteLogo(onTap: onLogoTap),
-            ),
+            SiteLogo(onTap: onLogoTap),
             const Spacer(),
-            IconButton(
-              onPressed: onMenuTap,
-              icon: const Icon(Icons.menu, size: 28),
+            Container(
+              decoration: BoxDecoration(
+                color: CustomColor.bgLight2,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: IconButton(
+                onPressed: onMenuTap,
+                icon: const Icon(
+                  Icons.menu,
+                  size: 24,
+                  color: CustomColor.textPrimary,
+                ),
+              ),
             ),
-            const SizedBox(width: 15),
           ],
         ),
       ),

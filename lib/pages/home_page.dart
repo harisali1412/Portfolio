@@ -57,8 +57,9 @@ class _HomePageState extends State<HomePage> {
                       curve: Curves.easeInOut,
                     );
                   },
-                  backgroundColor: CustomColor.whiteSecondary,
-                  child: const Icon(Icons.arrow_upward, color: Colors.white),
+                  backgroundColor: CustomColor.primary,
+                  foregroundColor: CustomColor.textPrimary,
+                  child: const Icon(Icons.arrow_upward),
                 )
               : null,
           endDrawer: constraints.maxWidth >= kMinDesktopWidth
@@ -72,54 +73,62 @@ class _HomePageState extends State<HomePage> {
           body: SingleChildScrollView(
             controller: scrollController,
             scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                SizedBox(key: navbarKeys.first),
-                if (constraints.maxWidth >= kMinDesktopWidth)
-                  HeaderDesktop(onNavMenuTap: (int navIndex) {
-                    scrollToSection(navIndex);
-                  })
-                else
-                  HeaderMobile(
-                    onLogoTap: () {},
-                    onMenuTap: () {
-                      scaffoldKey.currentState?.openEndDrawer();
-                    },
-                  ),
-                if (constraints.maxWidth >= kMinDesktopWidth)
-                  const MainDesktop()
-                else
-                  const MainMobile(),
-                Container(
-                  key: navbarKeys[1],
-                  width: screenWidth,
-                  padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
-                  color: CustomColor.bgLight1,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Text(
-                        "What can I do",
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w800,
-                          color: CustomColor.whitePrimary,
-                        ),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: MediaQuery.of(context).size.height,
+              ),
+              child: Column(
+                children: [
+                  SizedBox(key: navbarKeys.first),
+                  if (constraints.maxWidth >= kMinDesktopWidth)
+                    HeaderDesktop(onNavMenuTap: (int navIndex) {
+                      scrollToSection(navIndex);
+                    })
+                  else
+                    HeaderMobile(
+                      onLogoTap: () {},
+                      onMenuTap: () {
+                        scaffoldKey.currentState?.openEndDrawer();
+                      },
+                    ),
+                  if (constraints.maxWidth >= kMinDesktopWidth)
+                    MainDesktop(
+                      onContactTap: () => scrollToSection(3),
+                      onProjectsTap: () => scrollToSection(2),
+                    )
+                  else
+                    MainMobile(
+                      onContactTap: () => scrollToSection(3),
+                      onProjectsTap: () => scrollToSection(2),
+                    ),
+                  Container(
+                    key: navbarKeys[1],
+                    width: screenWidth,
+                    padding: const EdgeInsets.fromLTRB(80, 80, 80, 80),
+                    decoration: const BoxDecoration(
+                      color: CustomColor.bgLight1,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(32),
+                        topRight: Radius.circular(32),
                       ),
-                      const SizedBox(height: 50),
-                      if (constraints.maxWidth >= kMinDesktopWidth)
-                        const SkillsDesktop()
-                      else
-                        const SkillsMobile(),
-                    ],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (constraints.maxWidth >= kMinDesktopWidth)
+                          const SkillsDesktop()
+                        else
+                          const SkillsMobile(),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 30),
-                ProjectsSection(key: navbarKeys[2]),
-                const SizedBox(height: 30),
-                ContactSection(key: navbarKeys[3]),
-                const Footer(),
-              ],
+                  const SizedBox(height: 60),
+                  ProjectsSection(key: navbarKeys[2]),
+                  const SizedBox(height: 60),
+                  ContactSection(key: navbarKeys[3]),
+                  const Footer(),
+                ],
+              ),
             ),
           ),
         );

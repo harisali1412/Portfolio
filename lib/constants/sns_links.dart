@@ -5,7 +5,7 @@ class SnsLinks {
   static const String instagram = "https://www.instagram.com/harisalisafder/";
   static const String whatsapp = "https://wa.me/923030258495";
   static const String x = "https://x.com/HAS_Falcon?t=RHewK4sWSGXonWd6gwnxFA&s=08";
-  static const String blog = "https://";
+  static const String blog = "https://harisali1412.github.io/";
 
   static const String githubImage = "assets/images/github.png";
   static const String linkedinImage = "assets/images/linkedin.png";

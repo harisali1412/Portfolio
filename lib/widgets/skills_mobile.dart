@@ -7,80 +7,131 @@ class SkillsMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 500),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Platforms Section
-          const Padding(
-            padding: EdgeInsets.only(bottom: 10),
-            child: Center(
-              child: Text(
-                "Platforms",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: CustomColor.whitePrimary,
-                ),
-              ),
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Section Header
+        const Text(
+          "Skills & Technologies",
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: CustomColor.textPrimary,
           ),
-          for (int i = 0; i < platformItems.length; i++)
-            Container(
-              margin: const EdgeInsets.only(bottom: 8),
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: CustomColor.bgLight2,
-              ),
-              child: ListTile(
-                leading: Image.asset(
-                  platformItems[i]["img"],
-                  width: 30,
-                ),
-                title: Text(
-                  platformItems[i]["title"],
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ),
-            ),
-          const SizedBox(height: 40),
+        ),
+        const SizedBox(height: 12),
+        const Text(
+          "Technologies I work with",
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            color: CustomColor.textMuted,
+          ),
+        ),
+        const SizedBox(height: 40),
 
-          // Skills Section
-          const Padding(
-            padding: EdgeInsets.only(bottom: 10),
-            child: Center(
-              child: Text(
-                "Skills",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: CustomColor.whitePrimary,
-                ),
+        // Platforms Section
+        const Text(
+          "Platforms",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: CustomColor.textPrimary,
+          ),
+        ),
+        const SizedBox(height: 16),
+        for (int i = 0; i < platformItems.length; i++)
+          Container(
+            margin: const EdgeInsets.only(bottom: 12),
+            padding: const EdgeInsets.all(16),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: CustomColor.bgLight2,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: CustomColor.bgLight3.withValues(alpha: 0.3),
+                width: 1,
               ),
             ),
-          ),
-          Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            alignment: WrapAlignment.center,
-            children: [
-              for (int i = 0; i < skillsItems.length; i++)
-                Chip(
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  backgroundColor: CustomColor.bgLight2,
-                  label: Text(
-                    skillsItems[i]["title"],
-                    style: const TextStyle(fontSize: 14),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: CustomColor.bgLight3,
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  avatar: Image.asset(skillsItems[i]["img"], width: 24),
+                  child: Image.asset(
+                    platformItems[i]["img"],
+                    width: 28,
+                    height: 28,
+                  ),
                 ),
-            ],
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Text(
+                    platformItems[i]["title"],
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: CustomColor.textPrimary,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ],
-      ),
+        const SizedBox(height: 40),
+
+        // Skills Section
+        const Text(
+          "Technologies",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: CustomColor.textPrimary,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          alignment: WrapAlignment.start,
+          children: [
+            for (int i = 0; i < skillsItems.length; i++)
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                decoration: BoxDecoration(
+                  color: CustomColor.bgLight2,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: CustomColor.bgLight3.withValues(alpha: 0.3),
+                    width: 1,
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset(
+                      skillsItems[i]["img"],
+                      width: 18,
+                      height: 18,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      skillsItems[i]["title"],
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: CustomColor.textPrimary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
+        ),
+      ],
     );
   }
 }

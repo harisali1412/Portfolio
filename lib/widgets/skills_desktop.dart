@@ -204,9 +204,14 @@ class SkillsDesktop extends StatelessWidget {
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withValues(alpha: 0.1),
-                                      blurRadius: 10,
+                                      color: Colors.black.withValues(alpha: 38),  // 0.15 * 255 ≈ 38
+                                      blurRadius: 12,
                                       offset: const Offset(0, 4),
+                                    ),
+                                    BoxShadow(
+                                      color: CustomColor.primary.withValues(alpha: 13),  // 0.05 * 255 ≈ 13
+                                      blurRadius: 16,
+                                      offset: const Offset(0, 2),
                                     ),
                                   ],
                                 ),

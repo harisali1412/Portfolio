@@ -10,6 +10,10 @@ const List<Map> platformItems = [
     "img": "assets/images/data visualization.png",
     "title": "Data Analytical and Visualization"
   },
+  {
+    "img": "assets/images/devops.png",
+    "title": "DevOps Engineer"
+  },
 ];
 
 const List<Map> skillsItems = [
@@ -22,6 +26,9 @@ const List<Map> skillsItems = [
   {"img": "assets/images/python.png", "title": "Python"},
   {"img": "assets/images/dart.png", "title": "Dart"},
   {"img": "assets/images/flutter.png", "title": "Flutter"},
+  {"img": "assets/images/aws.png", "title": "AWS"},
+  {"img": "assets/images/jenkins.png", "title": "Jenkins"},
+  {"img": "assets/images/github.png", "title": "GitHub"},
   {"img": "assets/images/cisco.png", "title": "Cisco Packet Tracer"},
   {"img": "assets/images/power bi.png", "title": "Power BI"}
 ];

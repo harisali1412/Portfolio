@@ -9,8 +9,8 @@ class CustomColor {
   // Background Colors
   static const Color scaffoldBg = Color(0xFF0F172A); // Slate 900
   static const Color bgLight1 = Color(0xFF1E293B); // Slate 800
-  static const Color bgLight2 = Color(0xFF334155); // Slate 700
-  static const Color bgLight3 = Color(0xFF475569); // Slate 600
+  static const Color bgLight2 = Color(0xFF2A3B53); // Custom darker slate
+  static const Color bgLight3 = Color(0xFF3A4B63); // Custom lighter slate
   
   // Text Colors
   static const Color textPrimary = Color(0xFFF8FAFC); // Slate 50

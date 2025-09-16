@@ -35,7 +35,7 @@ class HeaderDesktop extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SiteLogo(onTap: () {}),
-            SizedBox(width: 24),
+            const SizedBox(width: 24),
             for (int i = 0; i < navTitles.length; i++)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),

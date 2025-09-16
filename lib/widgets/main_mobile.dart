@@ -65,7 +65,7 @@ class MainMobile extends StatelessWidget {
           
           // Title
           const Text(
-            "Flutter Developer & Machine Learning Engineer",
+            "Flutter Developer, DevOps & Machine Learning Engineer",
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,

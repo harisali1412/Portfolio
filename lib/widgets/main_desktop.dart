@@ -15,7 +15,7 @@ class MainDesktop extends StatelessWidget {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth < 700) {
+  if (constraints.maxWidth < 700) {
           // Mobile or narrow web: use vertical scroll
           return SingleChildScrollView(
             child: Padding(
@@ -83,7 +83,7 @@ class MainDesktop extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   const Text(
-                    "Flutter Developer & Machine Learning Engineer",
+                    "Flutter Developer, DevOps & Machine Learning Engineer",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -157,17 +157,17 @@ class MainDesktop extends StatelessWidget {
           // Desktop/tablet: original layout
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 80),
-            height: screenHeight / 1.1,
             constraints: const BoxConstraints(minHeight: 600),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                       // Greeting and name
                       RichText(
                         text: const TextSpan(
@@ -207,7 +207,7 @@ class MainDesktop extends StatelessWidget {
                       const SizedBox(height: 24),
                       // Subtitle
                       const Text(
-                        "Flutter Developer & Machine Learning Engineer",
+                        "Flutter Developer, DevOps & Machine Learning Engineer",
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w500,
@@ -229,7 +229,9 @@ class MainDesktop extends StatelessWidget {
                       ),
                       const SizedBox(height: 40),
                       // CTA Buttons
-                      Row(
+                      Wrap(
+                        spacing: 16,
+                        runSpacing: 16,
                         children: [
                           ElevatedButton(
                             onPressed: onContactTap,
@@ -249,7 +251,6 @@ class MainDesktop extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 16),
                           OutlinedButton(
                             onPressed: onProjectsTap,
                             style: OutlinedButton.styleFrom(
@@ -281,8 +282,8 @@ class MainDesktop extends StatelessWidget {
                       borderRadius: BorderRadius.circular(24),
                       child: Image.asset(
                         'assets/images/avatar.png',
-                        width: screenWidth / 3.5,
-                        height: screenWidth / 3.5,
+                        width: screenWidth < 1200 ? screenWidth / 4 : screenWidth / 3.5,
+                        height: screenWidth < 1200 ? screenWidth / 4 : screenWidth / 3.5,
                         fit: BoxFit.cover,
                       ),
                     ),

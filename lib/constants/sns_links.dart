@@ -1,11 +1,11 @@
 class SnsLinks {
   static const String github = "https://github.com/harisali1412";
-  static const String linkedin = "https://www.linkedin.com/in/hafiz-haris-ali-357aab28b/";
-  static const String facebook = "https://www.facebook.com/profile.php?id=100025121558579";
+  static const String linkedin = "https://www.linkedin.com/in/hafiz-haris-ali-safder";
+  static const String facebook = "https://www.facebook.com/haris.ali.safder";
   static const String instagram = "https://www.instagram.com/harisalisafder/";
   static const String whatsapp = "https://wa.me/923030258495";
-  static const String x = "https://x.com/HAS_Falcon?t=RHewK4sWSGXonWd6gwnxFA&s=08";
-  static const String blog = "https://harisali1412.github.io/";
+  static const String x = "https://x.com/harisalisafder";
+  static const String blog = "https://github.com/harisali1412";
 
   static const String githubImage = "assets/images/github.png";
   static const String linkedinImage = "assets/images/linkedin.png";

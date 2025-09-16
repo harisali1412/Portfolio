@@ -14,21 +14,23 @@ class SkillsMobile extends StatelessWidget {
         const Text(
           "Skills & Technologies",
           style: TextStyle(
-            fontSize: 28,
+            fontSize: 32,
             fontWeight: FontWeight.bold,
             color: CustomColor.textPrimary,
+            letterSpacing: -0.5,
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 16),
         const Text(
           "Technologies I work with",
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: FontWeight.normal,
             color: CustomColor.textMuted,
+            height: 1.5,
           ),
         ),
-        const SizedBox(height: 40),
+        const SizedBox(height: 48),
 
         // Platforms Section
         const Text(
@@ -46,12 +48,19 @@ class SkillsMobile extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             width: double.infinity,
             decoration: BoxDecoration(
-              color: CustomColor.bgLight2,
+              color: CustomColor.bgLight1,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: CustomColor.bgLight3.withValues(alpha: 0.3),
+                color: CustomColor.bgLight2.withValues(alpha: 0.3),
                 width: 1,
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 26),  // 0.1 * 255 ≈ 26
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
             ),
             child: Row(
               children: [
@@ -109,24 +118,27 @@ class SkillsMobile extends StatelessWidget {
                     width: 1,
                   ),
                 ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset(
-                      skillsItems[i]["img"],
-                      width: 18,
-                      height: 18,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      skillsItems[i]["title"],
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: CustomColor.textPrimary,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        skillsItems[i]["img"],
+                        width: 18,
+                        height: 18,
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 8),
+                      Text(
+                        skillsItems[i]["title"],
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: CustomColor.textPrimary,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
           ],

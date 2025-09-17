@@ -1,3 +1,7 @@
+when:
+  event:
+    - push
+
 steps:
   build:
     image: docker:latest

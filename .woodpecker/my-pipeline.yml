@@ -7,6 +7,8 @@ when:
 steps:
   build:
     image: docker:latest
+    volumes:
+  - /var/run/docker.sock:/var/run/docker.sock
     commands:
       - echo "Building container..."
       - docker build -t ghcr.io/${CI_REPO_OWNER}/${CI_REPO_NAME}:latest .

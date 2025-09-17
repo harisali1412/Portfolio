@@ -194,7 +194,7 @@ class MainDesktop extends StatelessWidget {
                             letterSpacing: -1.0,
                           ),
                           children: [
-                            TextSpan(text: "Haris Ali\n"),
+                            TextSpan(text: "Haris\n"),
                             TextSpan(
                               text: "Safder",
                               style: TextStyle(

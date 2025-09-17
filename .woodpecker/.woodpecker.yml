@@ -6,10 +6,10 @@ when:
 
 steps:
   build:
-    image: docker:latest
+    image: gcr.io/kaniko-project/executor:latest
     commands:
-      - echo "Building container..."
-      - docker build -t ghcr.io/${CI_REPO_OWNER}/${CI_REPO_NAME}:latest .
+      - /kaniko/executor --context $CI_WORKSPACE --destination=ghcr.io/${CI_REPO_OWNER}/${CI_REPO_NAME}:latest --dockerfile Dockerfile
+
 
   push:
     image: plugins/docker

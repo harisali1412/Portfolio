@@ -1,20 +1,12 @@
-# Use prebuilt Flutter image
-FROM ghcr.io/cirruslabs/flutter:latest
-
-# Set workdir
+# Build stage
+FROM cirrusci/flutter:3.19.0 as build
 WORKDIR /app
-
-# Copy project files
 COPY . .
-
-# Get dependencies
 RUN flutter pub get
+RUN flutter build web --release --web-renderer html
 
-# Example build (for web)
-RUN flutter build web
-
-# Expose port (if web app)
-EXPOSE 8080
-
-# Command to run
-CMD ["flutter", "run", "-d", "web-server", "--web-port=8080", "--web-hostname=0.0.0.0"]
+# Production stage
+FROM nginx:alpine
+COPY --from=build /app/build/web /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

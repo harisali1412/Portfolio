@@ -6,32 +6,24 @@ workspace:
 
 pipeline:
   setup:
-    image: cirrusci/flutter:3.19.0
+    image: alpine/flutter:3.19.0
     commands:
       - flutter pub get
 
   analyze:
-    image: cirrusci/flutter:3.19.0
+    image: alpine/flutter:3.19.0
     commands:
       - flutter analyze
 
   test:
-    image: cirrusci/flutter:3.19.0
+    image: alpine/flutter:3.19.0
     commands:
       - flutter test
 
   build-web:
-    image: cirrusci/flutter:3.19.0
+    image: alpine/flutter:3.19.0
     commands:
       - flutter build web --release
-    when:
-      event: push
-      branch: main
-
-  build-android:
-    image: cirrusci/flutter:3.19.0
-    commands:
-      - flutter build apk --release
     when:
       event: push
       branch: main

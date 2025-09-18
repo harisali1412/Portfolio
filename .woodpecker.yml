@@ -1,10 +1,6 @@
-version: '1'
+version: 1
 
-workspace:
-  base: /flutter
-  path: src
-
-pipeline:
+steps:
   setup:
     image: ghcr.io/cirruslabs/flutter:3.24.5
     commands:
@@ -20,24 +16,17 @@ pipeline:
     commands:
       - flutter test
 
-  build-web:
-    image: ghcr.io/cirruslabs/flutter:3.24.5
-    commands:
-      - flutter build web --release --web-renderer html
+  build-docker:
+    image: woodpeckerci/plugin-docker
+    settings:
+      registry: ghcr.io
+      repo: ghcr.io/harisali1412/flutter-web
+      tags:
+        - latest
+        - ${CI_COMMIT_SHA:0:7}
+      username: harisali1412
+      password:
+        from_secret: ghcr_token
     when:
-      event: push
       branch: main
-
-  docker-build-push:
-    image: docker:latest
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - DOCKER_BUILDKIT=1
-    commands:
-      - echo "$${GHCR_TOKEN}" | docker login ghcr.io -u harisali1412 --password-stdin
-      - docker build -t ghcr.io/harisali1412/flutter-web:latest .
-      - docker push ghcr.io/harisali1412/flutter-web:latest
-    when:
       event: push
-      branch: main

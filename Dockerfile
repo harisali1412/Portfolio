@@ -1,5 +1,6 @@
 # Build stage
-FROM cirrusci/flutter:3.19.0 as build
+FROM alpine/flutter:3.19.0 as build
+RUN apk add --no-cache bash
 WORKDIR /app
 COPY . .
 RUN flutter pub get

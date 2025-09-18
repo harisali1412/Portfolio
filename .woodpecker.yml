@@ -1,27 +1,21 @@
-version: '1'
-
-workspace:
-  base: /flutter
-  path: src
-
 pipeline:
   setup:
-    image: alpine/flutter:3.19.0
+    image: cirrusci/flutter:3.19.0
     commands:
       - flutter pub get
 
   analyze:
-    image: alpine/flutter:3.19.0
+    image: cirrusci/flutter:3.19.0
     commands:
       - flutter analyze
 
   test:
-    image: alpine/flutter:3.19.0
+    image: cirrusci/flutter:3.19.0
     commands:
       - flutter test
 
   build-web:
-    image: alpine/flutter:3.19.0
+    image: cirrusci/flutter:3.19.0
     commands:
       - flutter build web --release
     when:

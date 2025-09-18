@@ -5,35 +5,24 @@ workspace:
   path: src
 
 pipeline:
-  install-flutter:
-    image: ubuntu:22.04
-    commands:
-      - apt update && apt install -y curl unzip
-      - curl -s https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.0-stable.tar.xz | tar xJ -C /usr/local/
-      - export PATH="$PATH:/usr/local/flutter/bin"
-
   setup:
-    image: ubuntu:22.04
+    image: subfuzion/flutter:3.19.0
     commands:
-      - export PATH="$PATH:/usr/local/flutter/bin"
       - flutter pub get
 
   analyze:
-    image: ubuntu:22.04
+    image: subfuzion/flutter:3.19.0
     commands:
-      - export PATH="$PATH:/usr/local/flutter/bin"
       - flutter analyze
 
   test:
-    image: ubuntu:22.04
+    image: subfuzion/flutter:3.19.0
     commands:
-      - export PATH="$PATH:/usr/local/flutter/bin"
       - flutter test
 
   build-web:
-    image: alpine:3.18
+    image: subfuzion/flutter:3.19.0
     commands:
-      - apk add --no-cache flutter
       - flutter build web --release
     when:
       event: push

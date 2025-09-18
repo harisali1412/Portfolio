@@ -6,26 +6,26 @@ workspace:
 
 pipeline:
   install-flutter:
-    image: alpine:3.18
+    image: ubuntu:22.04
     commands:
-      - apk add --no-cache curl unzip bash
+      - apt update && apt install -y curl unzip
       - curl -s https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.0-stable.tar.xz | tar xJ -C /usr/local/
       - export PATH="$PATH:/usr/local/flutter/bin"
 
   setup:
-    image: alpine:3.18
+    image: ubuntu:22.04
     commands:
       - export PATH="$PATH:/usr/local/flutter/bin"
       - flutter pub get
 
   analyze:
-    image: alpine:3.18
+    image: ubuntu:22.04
     commands:
       - export PATH="$PATH:/usr/local/flutter/bin"
       - flutter analyze
 
   test:
-    image: alpine:3.18
+    image: ubuntu:22.04
     commands:
       - export PATH="$PATH:/usr/local/flutter/bin"
       - flutter test

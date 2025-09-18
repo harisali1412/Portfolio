@@ -1,22 +1,32 @@
+version: '1'
+
+workspace:
+  base: /flutter
+  path: src
+
 pipeline:
   setup:
-    image: cirrusci/flutter:3.19.0
+    image: alpine:3.18
     commands:
+      - apk add --no-cache flutter
       - flutter pub get
 
   analyze:
-    image: cirrusci/flutter:3.19.0
+    image: alpine:3.18
     commands:
+      - apk add --no-cache flutter
       - flutter analyze
 
   test:
-    image: cirrusci/flutter:3.19.0
+    image: alpine:3.18
     commands:
+      - apk add --no-cache flutter
       - flutter test
 
   build-web:
-    image: cirrusci/flutter:3.19.0
+    image: alpine:3.18
     commands:
+      - apk add --no-cache flutter
       - flutter build web --release
     when:
       event: push

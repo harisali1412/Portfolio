@@ -1,27 +1,37 @@
-when:
-  - event: push
-    branch: main
+version: '1'
 
-steps:
-  - name: setup
-    image: cirrusci/flutter:3.19
+workspace:
+  base: /flutter
+  path: src
+
+pipeline:
+  setup:
+    image: cirrusci/flutter:3.19.0
     commands:
-      - flutter --version
       - flutter pub get
 
-  - name: build-web
-    image: cirrusci/flutter:3.19
+  analyze:
+    image: cirrusci/flutter:3.19.0
     commands:
-      - flutter build web
+      - flutter analyze
 
-  - name: deploy
-    image: alpine
-    environment:
-      SSH_KEY:
-        from_secret: ssh_private_key
+  test:
+    image: cirrusci/flutter:3.19.0
     commands:
-      - apk add --no-cache openssh-client rsync
-      - mkdir -p ~/.ssh
-      - echo "$SSH_KEY" > ~/.ssh/id_rsa
-      - chmod 600 ~/.ssh/id_rsa
-      - rsync -avz build/web/ user@your-server:/var/www/portfolio
+      - flutter test
+
+  build-web:
+    image: cirrusci/flutter:3.19.0
+    commands:
+      - flutter build web --release
+    when:
+      event: push
+      branch: main
+
+  build-android:
+    image: cirrusci/flutter:3.19.0
+    commands:
+      - flutter build apk --release
+    when:
+      event: push
+      branch: main

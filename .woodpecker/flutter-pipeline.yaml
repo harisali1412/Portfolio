@@ -1,6 +1,6 @@
-version: '1'
+version: 1
 
-pipeline:
+steps:
   setup:
     image: ghcr.io/cirruslabs/flutter:3.24.5
     commands:

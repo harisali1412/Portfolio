@@ -17,15 +17,15 @@ class HeaderMobile extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 20),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         decoration: BoxDecoration(
-          color: CustomColor.bgLight1.withValues(alpha: 0.9),
+          color: CustomColor.bgLight1.withOpacity(0.9),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: CustomColor.bgLight2.withValues(alpha: 0.3),
+            color: CustomColor.bgLight2.withOpacity(0.3),
             width: 1,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.1),
+              color: Colors.black.withOpacity(0.1),
               blurRadius: 20,
               offset: const Offset(0, 4),
             ),

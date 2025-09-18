@@ -82,7 +82,7 @@ class ProjectsSection extends StatelessWidget {
               color: CustomColor.bgLight1,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
-                color: CustomColor.bgLight2.withValues(alpha: 0.3),
+                color: CustomColor.bgLight2.withOpacity(0.3),
                 width: 1,
               ),
             ),

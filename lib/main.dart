@@ -112,7 +112,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        cardTheme: CardThemeData(
+        cardTheme: CardTheme(
           color: CustomColor.bgLight1,
           elevation: 0,
           shape: RoundedRectangleBorder(

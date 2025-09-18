@@ -64,12 +64,12 @@ class SkillsDesktop extends StatelessWidget {
                                     color: CustomColor.bgLight1,
                                     borderRadius: BorderRadius.circular(16),
                                     border: Border.all(
-                                      color: CustomColor.bgLight2.withValues(alpha: 0.3),
+                                      color: CustomColor.bgLight2.withOpacity(0.3),
                                       width: 1,
                                     ),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Colors.black.withValues(alpha: 0.1),
+                                        color: Colors.black.withOpacity(0.1),
                                         blurRadius: 10,
                                         offset: const Offset(0, 4),
                                       ),
@@ -135,7 +135,7 @@ class SkillsDesktop extends StatelessWidget {
                                     color: CustomColor.bgLight1,
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
-                                      color: CustomColor.bgLight2.withValues(alpha: 0.3),
+                                      color: CustomColor.bgLight2.withOpacity(0.3),
                                       width: 1,
                                     ),
                                   ),
@@ -199,17 +199,17 @@ class SkillsDesktop extends StatelessWidget {
                                   color: CustomColor.bgLight1,
                                   borderRadius: BorderRadius.circular(16),
                                   border: Border.all(
-                                    color: CustomColor.bgLight2.withValues(alpha: 0.3),
+                                    color: CustomColor.bgLight2.withOpacity(0.3),
                                     width: 1,
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withValues(alpha: 38),  // 0.15 * 255 ≈ 38
+                                      color: Colors.black.withOpacity(38),  // 0.15 * 255 ≈ 38
                                       blurRadius: 12,
                                       offset: const Offset(0, 4),
                                     ),
                                     BoxShadow(
-                                      color: CustomColor.primary.withValues(alpha: 13),  // 0.05 * 255 ≈ 13
+                                      color: CustomColor.primary.withOpacity(13),  // 0.05 * 255 ≈ 13
                                       blurRadius: 16,
                                       offset: const Offset(0, 2),
                                     ),
@@ -274,7 +274,7 @@ class SkillsDesktop extends StatelessWidget {
                                   color: CustomColor.bgLight1,
                                   borderRadius: BorderRadius.circular(12),
                                   border: Border.all(
-                                    color: CustomColor.bgLight2.withValues(alpha: 0.3),
+                                    color: CustomColor.bgLight2.withOpacity(0.3),
                                     width: 1,
                                   ),
                                 ),

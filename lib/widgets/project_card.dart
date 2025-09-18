@@ -25,12 +25,12 @@ class ProjectCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         color: CustomColor.bgLight1,
         border: Border.all(
-          color: CustomColor.bgLight2.withValues(alpha: 0.3),
+          color: CustomColor.bgLight2.withOpacity(0.3),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
+            color: Colors.black.withOpacity(0.1),
             blurRadius: 15,
             offset: const Offset(0, 8),
           ),

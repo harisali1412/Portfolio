@@ -119,7 +119,7 @@ class _ContactSectionState extends State<ContactSection> {
                       color: CustomColor.bgLight2,
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: CustomColor.bgLight3.withValues(alpha: 0.3),
+                        color: CustomColor.bgLight3.withOpacity(0.3),
                         width: 1,
                       ),
                     ),
@@ -197,7 +197,7 @@ class _ContactSectionState extends State<ContactSection> {
                               color: CustomColor.bgLight2,
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: CustomColor.bgLight3.withValues(alpha: 0.3),
+                                color: CustomColor.bgLight3.withOpacity(0.3),
                                 width: 1,
                               ),
                             ),
@@ -246,7 +246,7 @@ class _ContactSectionState extends State<ContactSection> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: CustomColor.bgLight3.withValues(alpha: 0.5)),
+          borderSide: BorderSide(color: CustomColor.bgLight3.withOpacity(0.5)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),

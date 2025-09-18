@@ -13,7 +13,7 @@ class Footer extends StatelessWidget {
         color: CustomColor.bgLight1,
         border: Border(
           top: BorderSide(
-            color: CustomColor.bgLight2.withValues(alpha: 0.3),
+            color: CustomColor.bgLight2.withOpacity(0.3),
             width: 1,
           ),
         ),

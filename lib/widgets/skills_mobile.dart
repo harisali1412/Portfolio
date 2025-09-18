@@ -51,12 +51,12 @@ class SkillsMobile extends StatelessWidget {
               color: CustomColor.bgLight1,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: CustomColor.bgLight2.withValues(alpha: 0.3),
+                color: CustomColor.bgLight2.withOpacity(0.3),
                 width: 1,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 26),  // 0.1 * 255 ≈ 26
+                  color: Colors.black.withOpacity(26),  // 0.1 * 255 ≈ 26
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -114,7 +114,7 @@ class SkillsMobile extends StatelessWidget {
                   color: CustomColor.bgLight2,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: CustomColor.bgLight3.withValues(alpha: 0.3),
+                    color: CustomColor.bgLight3.withOpacity(0.3),
                     width: 1,
                   ),
                 ),

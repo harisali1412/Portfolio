@@ -7,7 +7,7 @@ steps:
       - echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
 
   build:
-    image: ghcr.io/harisali1412/myapp:latest
+    image: ghcr.io/harisali1412/flutter-ci:latest
     commands:
       - flutter pub get
       - flutter analyze

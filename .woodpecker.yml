@@ -8,3 +8,16 @@ steps:
       - flutter analyze
       - flutter test
       - flutter build apk --release
+
+  deploy:
+    image: woodpeckerci/plugin-scp
+    settings:
+      host: 3.94.193.56
+      username: ubuntu
+      key: ${SCP_KEY}
+      target: /home/ubuntu/builds/
+      source: build/app/outputs/flutter-apk/app-release.apk
+      port: 22
+    when:
+      event: push
+      branch: main

@@ -1,9 +1,23 @@
 version: "1"
 
 steps:
-  test-alpine:
+  build:
+    image: cirrusci/flutter:stable
+    commands:
+      - flutter --version
+      - flutter pub get
+      - flutter analyze
+      - flutter test
+      - flutter build apk --release
+
+  deploy:
     image: alpine:3.18
     commands:
-      - echo "Testing Alpine image"
-      - which sh
-      - echo "Alpine shell works!"
+      - apk add --no-cache openssh-client
+      - mkdir -p ~/.ssh
+      - echo "${SCP_KEY}" > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - scp -o StrictHostKeyChecking=no build/app/outputs/flutter-apk/app-release.apk ubuntu@3.94.193.56:/home/ubuntu/builds/
+    when:
+      event: push
+      branch: main

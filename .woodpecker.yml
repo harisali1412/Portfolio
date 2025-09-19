@@ -2,7 +2,7 @@ version: "1"
 
 steps:
   build:
-    image: flutter:stable  # Use official Flutter image
+    image: ghcr.io/cirruslabs/flutter:stable
     commands:
       - flutter pub get
       - flutter analyze

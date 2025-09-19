@@ -2,18 +2,9 @@ version: "1"
 
 steps:
   build:
-    image: cirrusci/flutter:stable
+    image: flutter:stable  # Use official Flutter image
     commands:
-      - flutter --version
       - flutter pub get
       - flutter analyze
       - flutter test
       - flutter build apk --release
-
-  debug:
-    image: alpine
-    commands:
-      - echo "Testing basic commands"
-      - ls -la /bin/sh
-      - which sh
-      - cat /etc/os-release

@@ -1,32 +1,22 @@
-version: 1
+version: "1"
 
 steps:
-  setup:
-    image: ghcr.io/cirruslabs/flutter:3.24.5
+  build:
+    image: cirrusci/flutter:stable
     commands:
       - flutter pub get
-
-  analyze:
-    image: ghcr.io/cirruslabs/flutter:3.24.5
-    commands:
       - flutter analyze
-
-  test:
-    image: ghcr.io/cirruslabs/flutter:3.24.5
-    commands:
       - flutter test
+      - flutter build apk --release
 
-  build-docker:
-    image: woodpeckerci/plugin-docker
+  deploy:
+    image: appleboy/drone-scp
     settings:
-      registry: ghcr.io
-      repo: ghcr.io/harisali1412/flutter-web
-      tags:
-        - latest
-        - ${CI_COMMIT_SHA:0:7}
-      username: harisali1412
-      password:
-        from_secret: ghcr_token
+      host: 3.94.193.56
+      username: ubuntu
+      key: ${SCP_KEY}
+      target: /home/ubuntu/builds/
+      source: build/app/outputs/flutter-apk/app-release.apk
     when:
-      branch: main
       event: push
+      branch: main

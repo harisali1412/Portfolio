@@ -1,35 +1,9 @@
 version: "1"
 
 steps:
-  build:
-    image: ubuntu:22.04
-    commands:
-      # Install basic tools and Flutter
-      - apt-get update
-      - apt-get install -y curl unzip git
-
-      # Download and install Flutter
-      - curl -O https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.22.0-stable.tar.xz
-      - tar xf flutter_linux_3.22.0-stable.tar.xz -C /usr/local/
-      - export PATH="$PATH:/usr/local/flutter/bin"
-
-      # Verify Flutter installation
-      - flutter --version
-
-      # Run Flutter commands
-      - flutter pub get
-      - flutter analyze
-      - flutter test
-      - flutter build apk --release
-
-  deploy:
+  test-alpine:
     image: alpine:3.18
     commands:
-      - apk add --no-cache openssh-client
-      - mkdir -p ~/.ssh
-      - echo "${SCP_KEY}" > ~/.ssh/id_rsa
-      - chmod 600 ~/.ssh/id_rsa
-      - scp -o StrictHostKeyChecking=no build/app/outputs/flutter-apk/app-release.apk ubuntu@3.94.193.56:/home/ubuntu/builds/
-    when:
-      event: push
-      branch: main
+      - echo "Testing Alpine image"
+      - which sh
+      - echo "Alpine shell works!"

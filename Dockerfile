@@ -1,15 +1,25 @@
-# Build stage with Flutter 3.19.0 (Dart 3.1+)
-FROM ghcr.io/cirruslabs/flutter:3.24.5 as build
+FROM ubuntu:22.04
 
-WORKDIR /app
-COPY . .
+# Install basic dependencies and shell
+RUN apt-get update && \
+    apt-get install -y \
+    curl \
+    unzip \
+    git \
+    bash \
+    openssh-client \
+    && rm -rf /var/lib/apt/lists/*
 
-# Fetch dependencies and build
-RUN flutter pub get
-RUN flutter build web --release --web-renderer html
+# Install Flutter
+RUN curl -O https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.22.0-stable.tar.xz && \
+    tar xf flutter_linux_3.22.0-stable.tar.xz -C /usr/local/ && \
+    rm flutter_linux_3.22.0-stable.tar.xz
 
-# Production stage with Nginx
-FROM nginx:alpine
-COPY --from=build /app/build/web /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Set up environment variables
+ENV PATH="$PATH:/usr/local/flutter/bin"
+
+# Verify installation
+RUN flutter --version
+
+# Set default shell
+CMD ["/bin/bash"]

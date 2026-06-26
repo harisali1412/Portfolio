@@ -3,7 +3,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:portfolio/constants/colors.dart';
 import 'package:portfolio/constants/design_system.dart';
 import 'package:portfolio/widgets/section_header.dart';
-import 'package:portfolio/pages/home_page.dart';
 
 class BlogSection extends StatelessWidget {
   const BlogSection({super.key});

@@ -5,7 +5,6 @@ import 'package:portfolio/constants/colors.dart';
 import 'package:portfolio/constants/design_system.dart';
 import 'package:portfolio/constants/sns_links.dart';
 import 'package:portfolio/widgets/section_header.dart';
-import 'package:portfolio/pages/home_page.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({super.key});

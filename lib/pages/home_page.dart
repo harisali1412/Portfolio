@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/constants/colors.dart';
 import 'package:portfolio/constants/design_system.dart';
-import 'package:portfolio/constants/nav_items.dart';
-import 'package:portfolio/constants/sns_links.dart';
 import 'package:portfolio/widgets/contact_section.dart';
 import 'package:portfolio/widgets/drawer_mobile.dart';
 import 'package:portfolio/widgets/experience_section.dart';

@@ -49,7 +49,6 @@ class ExperienceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 700;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 24),

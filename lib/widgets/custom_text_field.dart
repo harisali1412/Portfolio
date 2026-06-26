@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/constants/colors.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField(
-      {super.key, this.controller, this.maxLines = 1, this.hintText});
+  const CustomTextField({
+    super.key, 
+    this.controller, 
+    this.maxLines = 1, 
+    this.hintText,
+  });
 
   final TextEditingController? controller;
   final int maxLines;
@@ -15,17 +19,18 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       maxLines: maxLines,
       style: const TextStyle(
-        color: CustomColor.scaffoldBg,
+        color: CustomColor.textPrimary,
       ),
       decoration: InputDecoration(
-          contentPadding: const EdgeInsets.all(16),
-          filled: true,
-          fillColor: CustomColor.whiteSecondary,
-          focusedBorder: getInputBorder,
-          enabledBorder: getInputBorder,
-          border: getInputBorder,
-          hintText: hintText,
-          hintStyle: const TextStyle(color: CustomColor.hintDark)),
+        contentPadding: const EdgeInsets.all(16),
+        filled: true,
+        fillColor: CustomColor.bgLight1,
+        focusedBorder: getInputBorder,
+        enabledBorder: getInputBorder,
+        border: getInputBorder,
+        hintText: hintText,
+        hintStyle: const TextStyle(color: CustomColor.textMuted),
+      ),
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/constants/colors.dart';
+import 'package:portfolio/constants/design_system.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -18,43 +19,26 @@ class Footer extends StatelessWidget {
           ),
         ),
       ),
-      child: Column(
+      child: const Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                width: 32,
-                height: 32,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  gradient: const LinearGradient(
-                    colors: [CustomColor.primary, CustomColor.gradientEnd],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                child: const Icon(
-                  Icons.code,
-                  color: CustomColor.textPrimary,
-                  size: 18,
-                ),
-              ),
-              const SizedBox(width: 12),
-              const Text(
+              Text(
                 "Haris Ali Safder",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
+                  fontStyle: FontStyle.italic,
                   color: CustomColor.textPrimary,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          const Text(
+          SizedBox(height: 16),
+          Text(
             "Flutter Developer & Machine Learning Engineer",
             style: TextStyle(
               fontSize: 14,
@@ -62,8 +46,8 @@ class Footer extends StatelessWidget {
               color: CustomColor.textMuted,
             ),
           ),
-          const SizedBox(height: 24),
-          const Text(
+          SizedBox(height: 24),
+          Text(
             "Made with ❤️ using Flutter",
             style: TextStyle(
               fontWeight: FontWeight.w500,
@@ -71,8 +55,8 @@ class Footer extends StatelessWidget {
               color: CustomColor.textSecondary,
             ),
           ),
-          const SizedBox(height: 8),
-          const Text(
+          SizedBox(height: 8),
+          Text(
             "© 2025 Haris Ali Safder. All rights reserved.",
             style: TextStyle(
               fontWeight: FontWeight.w400,

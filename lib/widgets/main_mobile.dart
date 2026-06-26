@@ -1,133 +1,151 @@
 import 'package:flutter/material.dart';
-import '../constants/colors.dart';
+import 'package:portfolio/constants/colors.dart';
+import 'package:portfolio/constants/design_system.dart';
+import 'package:portfolio/widgets/gradient_button.dart';
+import 'package:portfolio/pages/home_page.dart';
 
 class MainMobile extends StatelessWidget {
-  const MainMobile({super.key, this.onContactTap, this.onProjectsTap});
-
-  final VoidCallback? onContactTap;
-  final VoidCallback? onProjectsTap;
+  const MainMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
-      constraints: const BoxConstraints(minHeight: 500),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Profile Image
-          Center(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(24),
-              child: Image.asset(
-                'assets/images/avatar.png',
-                height: 200,
-                width: 200,
-                fit: BoxFit.cover,
+          Container(
+            width: 180,
+            height: 180,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: const LinearGradient(
+                colors: [CustomColor.primary, CustomColor.gradientEnd],
               ),
+              boxShadow: DesignSystem.glowShadow,
             ),
-          ),
-          const SizedBox(height: 40),
-          
-          // Greeting
-          const Text(
-            "Hello, I'm",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: CustomColor.accent,
-              height: 1.2,
-            ),
-          ),
-          const SizedBox(height: 12),
-          
-          // Name
-          RichText(
-            text: const TextSpan(
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: CustomColor.textPrimary,
-                height: 1.1,
-                letterSpacing: -0.5,
+            padding: const EdgeInsets.all(4),
+            child: Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: CustomColor.scaffoldBg,
               ),
-              children: [
-                TextSpan(text: "Haris Ali\n"),
-                TextSpan(
-                  text: "Safder",
-                  style: TextStyle(color: CustomColor.primary),
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/profile/profile.png',
+                  fit: BoxFit.cover,
                 ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 16),
-          
-          // Title
-          const Text(
-            "Flutter Developer, DevOps & Machine Learning Engineer",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: CustomColor.textSecondary,
-              height: 1.4,
-            ),
-          ),
-          const SizedBox(height: 24),
-          
-          // Description
-          const Text(
-            "Passionate about creating innovative mobile applications and intelligent systems. "
-            "Specialized in cross-platform development with Flutter and implementing cutting-edge ML solutions.",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.normal,
-              color: CustomColor.textMuted,
-              height: 1.6,
+              ),
             ),
           ),
           const SizedBox(height: 32),
-          
-          // CTA Buttons
-                     SizedBox(
-             width: double.infinity,
-             child: ElevatedButton(
-               onPressed: onContactTap,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: CustomColor.primary,
-                foregroundColor: CustomColor.textPrimary,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [CustomColor.primary, CustomColor.gradientEnd],
               ),
-              child: const Text(
-                "Get in touch",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
+              borderRadius: BorderRadius.circular(DesignSystem.radiusFull),
+            ),
+            child: const Text(
+              "Available for Work",
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
               ),
             ),
           ),
+          const SizedBox(height: 16),
+          const Text(
+            "Hello, I'm",
+            style: TextStyle(
+              fontSize: DesignSystem.fontSizeLG,
+              color: CustomColor.textSecondary,
+            ),
+          ),
+          const SizedBox(height: 4),
+          ShaderMask(
+            shaderCallback: (bounds) => const LinearGradient(
+              colors: [CustomColor.primary, CustomColor.gradientEnd],
+            ).createShader(
+              Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+            ),
+            child: const Text(
+              "Haris Ali Safder",
+              style: TextStyle(
+                fontSize: DesignSystem.fontSizeXXL,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+                letterSpacing: -0.5,
+                height: 1.1,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            "Mobile Application Developer • Flutter & AI Specialist",
+            style: TextStyle(
+              fontSize: DesignSystem.fontSizeMD,
+              color: CustomColor.textSecondary,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 24),
+          const Text(
+            "Building impactful mobile applications for healthcare, fintech, "
+            "and AI-powered solutions.",
+            style: TextStyle(
+              fontSize: DesignSystem.fontSizeMD,
+              color: CustomColor.textMuted,
+              height: 1.6,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 32),
+          SizedBox(
+            width: double.infinity,
+            height: 52,
+            child: GradientButton(
+              onPressed: () {
+                final homeState = context.findAncestorStateOfType<HomePageState>();
+                if (homeState != null) {
+                  homeState.scrollToSection(4);
+                }
+              },
+              text: "Get in touch",
+              icon: const Icon(Icons.send_rounded, size: 20),
+            ),
+          ),
           const SizedBox(height: 12),
-                     SizedBox(
-             width: double.infinity,
-             child: OutlinedButton(
-               onPressed: onProjectsTap,
+          SizedBox(
+            width: double.infinity,
+            height: 52,
+            child: OutlinedButton(
+              onPressed: () {
+                final homeState = context.findAncestorStateOfType<HomePageState>();
+                if (homeState != null) {
+                  homeState.scrollToSection(3);
+                }
+              },
               style: OutlinedButton.styleFrom(
-                foregroundColor: CustomColor.primary,
-                side: const BorderSide(color: CustomColor.primary),
+                foregroundColor: Colors.white,
+                side: BorderSide(
+                  color: Colors.white.withOpacity(0.2),
+                  width: 1,
+                ),
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(DesignSystem.radiusMD),
                 ),
               ),
               child: const Text(
                 "View Projects",
                 style: TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),

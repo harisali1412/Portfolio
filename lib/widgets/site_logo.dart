@@ -24,10 +24,24 @@ class SiteLogo extends StatelessWidget {
                 end: Alignment.bottomRight,
               ),
             ),
-            child: const Icon(
-              Icons.code,
-              color: CustomColor.textPrimary,
-              size: 24,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                'assets/profile/profile.png',
+                width: 40,
+                height: 40,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) => const Center(
+                  child: Text(
+                    "H",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
           const SizedBox(width: 12),

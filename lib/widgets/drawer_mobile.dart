@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../constants/colors.dart';
 import '../constants/nav_items.dart';
 
@@ -19,23 +18,25 @@ class DrawerMobile extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: const Icon(Icons.close)),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: const Icon(Icons.close, color: CustomColor.textPrimary),
+              ),
             ),
           ),
           for (int i = 0; i < navIcons.length; i++)
             ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 30),
               titleTextStyle: const TextStyle(
-                  color: CustomColor.whitePrimary,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15),
+                color: CustomColor.textPrimary,
+                fontWeight: FontWeight.w500,
+                fontSize: 15,
+              ),
               onTap: () {
                 onNavItemTap(i);
               },
-              leading: Icon(navIcons[i]),
+              leading: Icon(navIcons[i], color: CustomColor.textPrimary),
               title: Text(navTitles[i]),
             )
         ],

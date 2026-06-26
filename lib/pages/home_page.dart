@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:portfolio/constants/colors.dart';
-import 'package:portfolio/constants/size.dart';
+import 'package:portfolio/constants/design_system.dart';
+import 'package:portfolio/constants/nav_items.dart';
 import 'package:portfolio/constants/sns_links.dart';
 import 'package:portfolio/widgets/contact_section.dart';
 import 'package:portfolio/widgets/drawer_mobile.dart';
+import 'package:portfolio/widgets/experience_section.dart';
 import 'package:portfolio/widgets/footer.dart';
 import 'package:portfolio/widgets/header_mobile.dart';
 import 'package:portfolio/widgets/main_desktop.dart';
@@ -12,145 +13,150 @@ import 'package:portfolio/widgets/main_mobile.dart';
 import 'package:portfolio/widgets/projects_section.dart';
 import 'package:portfolio/widgets/skills_desktop.dart';
 import 'package:portfolio/widgets/skills_mobile.dart';
+import 'package:portfolio/widgets/education_section.dart';
+import 'package:portfolio/widgets/blog_section.dart';
 import '../widgets/header_desktop.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  final scrollController = ScrollController();
-  final List<GlobalKey> navbarKeys = List.generate(4, (index) => GlobalKey());
+// Make the state class public so other widgets can access it
+class HomePageState extends State<HomePage> {
+  late GlobalKey<ScaffoldState> scaffoldKey;
+  late ScrollController scrollController;
+  late List<GlobalKey> navbarKeys;
   bool showBackToTop = false;
 
   @override
   void initState() {
     super.initState();
+    // Initialize keys in initState
+    scaffoldKey = GlobalKey<ScaffoldState>();
+    scrollController = ScrollController();
+    navbarKeys = List.generate(7, (index) => GlobalKey());
+    
     scrollController.addListener(() {
       setState(() {
-        showBackToTop =
-            scrollController.offset > 300; // Show button after 300px scroll
+        showBackToTop = scrollController.offset > 300;
       });
     });
   }
 
+  // Make this method public so other widgets can call it
+  void scrollToSection(int navIndex) async {
+    final key = navbarKeys[navIndex];
+    if (key.currentContext != null) {
+      Scrollable.ensureVisible(
+        key.currentContext!,
+        duration: DesignSystem.animationDuration,
+        curve: DesignSystem.animationCurve,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final screenWidth = screenSize.width;
+    final isMobile = ResponsiveHelper.isMobile(context);
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Scaffold(
-          key: scaffoldKey,
-          backgroundColor: CustomColor.scaffoldBg,
-          floatingActionButton: showBackToTop
-              ? FloatingActionButton(
-                  onPressed: () {
-                    scrollController.animateTo(
-                      0,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  backgroundColor: CustomColor.primary,
-                  foregroundColor: CustomColor.textPrimary,
-                  child: const Icon(Icons.arrow_upward),
-                )
-              : null,
-          endDrawer: constraints.maxWidth >= kMinDesktopWidth
-              ? null
-              : DrawerMobile(
-                  onNavItemTap: (int navIndex) {
-                    scaffoldKey.currentState?.closeEndDrawer();
-                    scrollToSection(navIndex);
-                  },
-                ),
-          body: SingleChildScrollView(
-            controller: scrollController,
-            scrollDirection: Axis.vertical,
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: MediaQuery.of(context).size.height,
-              ),
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: CustomColor.scaffoldBg,
+      floatingActionButton: showBackToTop
+          ? FloatingActionButton(
+              onPressed: () {
+                scrollController.animateTo(
+                  0,
+                  duration: DesignSystem.animationDuration,
+                  curve: DesignSystem.animationCurve,
+                );
+              },
+              backgroundColor: CustomColor.primary,
+              child: const Icon(Icons.arrow_upward_rounded, color: Colors.white),
+            )
+          : null,
+      endDrawer: !isMobile
+          ? null
+          : DrawerMobile(
+              onNavItemTap: (int navIndex) {
+                scaffoldKey.currentState?.closeEndDrawer();
+                scrollToSection(navIndex);
+              },
+            ),
+      body: SingleChildScrollView(
+        controller: scrollController,
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            // Home Section
+            Container(
+              key: navbarKeys[0],
+              padding: EdgeInsets.only(top: isMobile ? 0 : 20),
               child: Column(
                 children: [
-                  SizedBox(key: navbarKeys.first),
-                  if (constraints.maxWidth >= kMinDesktopWidth)
-                    HeaderDesktop(onNavMenuTap: (int navIndex) {
-                      scrollToSection(navIndex);
-                    })
+                  if (!isMobile)
+                    HeaderDesktop(
+                      onNavMenuTap: (int navIndex) {
+                        scrollToSection(navIndex);
+                      },
+                    )
                   else
                     HeaderMobile(
-                      onLogoTap: () {},
+                      onLogoTap: () {
+                        scrollToSection(0);
+                      },
                       onMenuTap: () {
                         scaffoldKey.currentState?.openEndDrawer();
                       },
                     ),
-                  if (constraints.maxWidth >= kMinDesktopWidth)
-                    MainDesktop(
-                      onContactTap: () => scrollToSection(3),
-                      onProjectsTap: () => scrollToSection(2),
-                    )
+                  if (!isMobile)
+                    const MainDesktop()
                   else
-                    MainMobile(
-                      onContactTap: () => scrollToSection(3),
-                      onProjectsTap: () => scrollToSection(2),
-                    ),
-                  Container(
-                    key: navbarKeys[1],
-                    width: screenWidth,
-                    padding: const EdgeInsets.fromLTRB(80, 80, 80, 80),
-                    decoration: const BoxDecoration(
-                      color: CustomColor.bgLight1,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(32),
-                        topRight: Radius.circular(32),
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (constraints.maxWidth >= kMinDesktopWidth)
-                          const SkillsDesktop()
-                        else
-                          const SkillsMobile(),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 60),
-                  ProjectsSection(key: navbarKeys[2]),
-                  const SizedBox(height: 60),
-                  ContactSection(key: navbarKeys[3]),
-                  const Footer(),
+                    const MainMobile(),
                 ],
               ),
             ),
-          ),
-        );
-      },
-    );
-  }
+            
+            // Experience Section
+            Container(
+              key: navbarKeys[1],
+              child: const ExperienceSection(),
+            ),
+            
+            // Skills Section
+            Container(
+              key: navbarKeys[2],
+              child: isMobile ? const SkillsMobile() : const SkillsDesktop(),
+            ),
+            
+            // Projects Section
+            Container(
+              key: navbarKeys[3],
+              child: const ProjectsSection(),
+            ),
+            
+            // Education Section
+            const EducationSection(),
 
-  void scrollToSection(int navIndex) async {
-    if (navIndex == 4) {
-      final Uri blogUri = Uri.parse(SnsLinks.blog);
-      if (await canLaunchUrl(blogUri)) {
-        await launchUrl(blogUri, mode: LaunchMode.externalApplication);
-      } else {
-        throw 'Could not launch ${SnsLinks.blog}';
-      }
-      return;
-    }
-    final key = navbarKeys[navIndex];
-    Scrollable.ensureVisible(
-      key.currentContext!,
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
+            // Blog / Publications Section
+            Container(
+              key: navbarKeys[5],
+              child: const BlogSection(),
+            ),
+
+            // Contact Section
+            Container(
+              key: navbarKeys[4],
+              child: const ContactSection(),
+            ),
+            
+            const Footer(),
+          ],
+        ),
+      ),
     );
   }
 

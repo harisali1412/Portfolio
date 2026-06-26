@@ -1,34 +1,49 @@
-const List<Map> platformItems = [
-  {"img": "assets/images/android.png", "title": "Android Developer"},
-  {"img": "assets/images/ios.png", "title": "iOS Developer"},
-  {"img": "assets/images/web.png", "title": "Web Developer"},
-  {
-    "img": "assets/images/machine learning.png",
-    "title": "Machine Learning Engineer"
-  },
-  {
-    "img": "assets/images/data visualization.png",
-    "title": "Data Analytical and Visualization"
-  },
-  {
-    "img": "assets/images/devops.png",
-    "title": "DevOps Engineer"
-  },
-];
+class SkillCategory {
+  final String name;
+  final List<SkillItem> items;
 
-const List<Map> skillsItems = [
-  {"img": "assets/images/html.png", "title": "HTML5"},
-  {"img": "assets/images/css.png", "title": "CSS3"},
-  {"img": "assets/images/php.png", "title": "PHP"},
-  {"img": "assets/images/c.png", "title": "C"},
-  {"img": "assets/images/c++.png", "title": "C++"},
-  {"img": "assets/images/sql.png", "title": "SQL"},
-  {"img": "assets/images/python.png", "title": "Python"},
-  {"img": "assets/images/dart.png", "title": "Dart"},
-  {"img": "assets/images/flutter.png", "title": "Flutter"},
-  {"img": "assets/images/aws.png", "title": "AWS"},
-  {"img": "assets/images/jenkins.png", "title": "Jenkins"},
-  {"img": "assets/images/github.png", "title": "GitHub"},
-  {"img": "assets/images/cisco.png", "title": "Cisco Packet Tracer"},
-  {"img": "assets/images/power bi.png", "title": "Power BI"}
+  SkillCategory({required this.name, required this.items});
+}
+
+class SkillItem {
+  final String name;
+  final String icon;
+  final int? proficiency;
+
+  SkillItem({required this.name, required this.icon, this.proficiency});
+}
+
+List<SkillCategory> skillCategories = [
+  SkillCategory(
+    name: "Mobile Development",
+    items: [
+      SkillItem(name: "Flutter", icon: "assets/images/flutter.png", proficiency: 5),
+      SkillItem(name: "Dart", icon: "assets/images/dart.png", proficiency: 5),
+      SkillItem(name: "Supabase", icon: "assets/images/supabase.png", proficiency: 4),
+      SkillItem(name: "Firebase", icon: "assets/images/firebase.png", proficiency: 4),
+    ],
+  ),
+  SkillCategory(
+    name: "Backend & API",
+    items: [
+      SkillItem(name: "REST APIs", icon: "assets/images/restapi.png", proficiency: 5),
+      SkillItem(name: "Python Flask", icon: "assets/images/python.png", proficiency: 4),
+    ],
+  ),
+  SkillCategory(
+    name: "DevOps & Cloud",
+    items: [
+      SkillItem(name: "AWS", icon: "assets/images/aws.png", proficiency: 3),
+      SkillItem(name: "CI/CD", icon: "assets/images/jenkins.png", proficiency: 3),
+    ],
+  ),
+  SkillCategory(
+    name: "Tools & Technologies",
+    items: [
+      SkillItem(name: "Git/GitHub", icon: "assets/images/github.png", proficiency: 5),
+      SkillItem(name: "Postman", icon: "assets/images/postman.png", proficiency: 4),
+      SkillItem(name: "VS Code", icon: "assets/images/vscode.png", proficiency: 5),
+      SkillItem(name: "Android Studio", icon: "assets/images/android.png", proficiency: 4),
+    ],
+  ),
 ];

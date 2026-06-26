@@ -1,149 +1,139 @@
 import 'package:flutter/material.dart';
-import '../constants/colors.dart';
-import '../constants/skills_items.dart';
+import 'package:portfolio/constants/colors.dart';
+import 'package:portfolio/constants/design_system.dart';
+import 'package:portfolio/constants/skills_items.dart';
+import 'package:portfolio/widgets/animated_card.dart';
+import 'package:portfolio/widgets/section_header.dart';
 
 class SkillsMobile extends StatelessWidget {
   const SkillsMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Section Header
-        const Text(
-          "Skills & Technologies",
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-            color: CustomColor.textPrimary,
-            letterSpacing: -0.5,
-          ),
-        ),
-        const SizedBox(height: 16),
-        const Text(
-          "Technologies I work with",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.normal,
-            color: CustomColor.textMuted,
-            height: 1.5,
-          ),
-        ),
-        const SizedBox(height: 48),
+    final padding = ResponsiveHelper.getPadding(context);
 
-        // Platforms Section
-        const Text(
-          "Platforms",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-            color: CustomColor.textPrimary,
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: padding,
+        vertical: 40,
+      ),
+      child: Column(
+        children: [
+          const SectionHeader(
+            title: "Skills & Technologies",
+            subtitle: "Technologies I work with",
+            alignment: CrossAxisAlignment.center,
           ),
-        ),
-        const SizedBox(height: 16),
-        for (int i = 0; i < platformItems.length; i++)
-          Container(
-            margin: const EdgeInsets.only(bottom: 12),
-            padding: const EdgeInsets.all(16),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: CustomColor.bgLight1,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: CustomColor.bgLight2.withOpacity(0.3),
-                width: 1,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(26),  // 0.1 * 255 ≈ 26
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
+          const SizedBox(height: 48),
+          ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: ResponsiveHelper.getMaxWidth(context)),
+            child: Column(
+              children: [
+                for (int i = 0; i < skillCategories.length; i++)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 32),
+                    child: _buildSkillCategory(skillCategories[i]),
+                  ),
               ],
             ),
-            child: Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(10),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSkillCategory(SkillCategory category) {
+    return AnimatedCard(
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              CustomColor.bgCard,
+              CustomColor.bgLight1,
+            ],
+          ),
+          borderRadius: BorderRadius.circular(DesignSystem.radiusLG),
+          border: Border.all(
+            color: Colors.white.withOpacity(0.06),
+            width: 1,
+          ),
+          boxShadow: DesignSystem.cardShadow,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              category.name,
+              style: DesignSystem.headingH3.copyWith(
+                fontSize: DesignSystem.fontSizeLG,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: category.items.map((skill) {
+                return Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
-                    color: CustomColor.bgLight3,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Image.asset(
-                    platformItems[i]["img"],
-                    width: 28,
-                    height: 28,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Text(
-                    platformItems[i]["title"],
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: CustomColor.textPrimary,
+                    color: Colors.white.withOpacity(0.06),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.08),
+                      width: 1,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-        const SizedBox(height: 40),
-
-        // Skills Section
-        const Text(
-          "Technologies",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-            color: CustomColor.textPrimary,
-          ),
-        ),
-        const SizedBox(height: 16),
-        Wrap(
-          spacing: 10,
-          runSpacing: 10,
-          alignment: WrapAlignment.start,
-          children: [
-            for (int i = 0; i < skillsItems.length; i++)
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                decoration: BoxDecoration(
-                  color: CustomColor.bgLight2,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: CustomColor.bgLight3.withOpacity(0.3),
-                    width: 1,
-                  ),
-                ),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Image.asset(
-                        skillsItems[i]["img"],
+                        skill.icon,
                         width: 18,
                         height: 18,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            width: 18,
+                            height: 18,
+                            decoration: BoxDecoration(
+                              color: CustomColor.primary.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Center(
+                              child: Text(
+                                skill.name.substring(0, 1),
+                                style: const TextStyle(
+                                  fontSize: 9,
+                                  fontWeight: FontWeight.bold,
+                                  color: CustomColor.primary,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: 6),
                       Text(
-                        skillsItems[i]["title"],
+                        skill.name,
                         style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: CustomColor.textPrimary,
+                          fontSize: DesignSystem.fontSizeSM,
+                          color: CustomColor.textSecondary,
                         ),
                       ),
                     ],
                   ),
-                ),
-              ),
+                );
+              }).toList(),
+            ),
           ],
         ),
-      ],
+      ),
     );
   }
 }

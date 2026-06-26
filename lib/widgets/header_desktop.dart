@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/widgets/site_logo.dart';
 import '../constants/nav_items.dart';
 import '../constants/colors.dart';
+import '../constants/design_system.dart';
 
 class HeaderDesktop extends StatelessWidget {
   const HeaderDesktop({super.key, required this.onNavMenuTap});
@@ -16,18 +17,12 @@ class HeaderDesktop extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
       decoration: BoxDecoration(
         color: CustomColor.bgLight1.withOpacity(0.8),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(DesignSystem.radiusLG),
         border: Border.all(
           color: CustomColor.bgLight2.withOpacity(0.3),
           width: 1,
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 20,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        boxShadow: DesignSystem.cardShadow,
       ),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -50,7 +45,7 @@ class HeaderDesktop extends StatelessWidget {
                     ),
                   ).copyWith(
                     overlayColor: WidgetStateProperty.all(
-                      CustomColor.primary.withAlpha((0.1 * 255).toInt()),
+                      CustomColor.primary.withOpacity(0.1),
                     ),
                   ),
                   child: Text(

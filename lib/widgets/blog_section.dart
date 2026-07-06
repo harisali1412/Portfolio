@@ -9,6 +9,7 @@ class BlogSection extends StatelessWidget {
 
   static const _articleUrl = 'https://www.mdpi.com/2227-7080/14/3/148';
   static const _profileUrl = 'https://sciprofiles.com/profile/harisalisafder';
+  static const _certAsset = 'assets/certificates/publication.png';
 
   Future<void> _launchURL(String url) async {
     try {
@@ -16,6 +17,57 @@ class BlogSection extends StatelessWidget {
       await launchUrl(uri,
           mode: LaunchMode.externalApplication, webOnlyWindowName: '_blank');
     } catch (_) {}
+  }
+
+  void _showCertificate(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierColor: Colors.black87,
+      builder: (_) => Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.all(16),
+        child: Stack(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: InteractiveViewer(
+                child: Image.asset(
+                  _certAsset,
+                  fit: BoxFit.contain,
+                  errorBuilder: (_, __, ___) => Container(
+                    padding: const EdgeInsets.all(32),
+                    decoration: BoxDecoration(
+                      color: CustomColor.bgCard,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Text(
+                      'Certificate image not found.',
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 8,
+              right: 8,
+              child: GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: Colors.black54,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Icon(Icons.close_rounded,
+                      color: Colors.white, size: 20),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -51,6 +103,12 @@ class BlogSection extends StatelessWidget {
             constraints: BoxConstraints(
                 maxWidth: ResponsiveHelper.getMaxWidth(context)),
             child: _buildArticleCard(context, isMobile),
+          ),
+          const SizedBox(height: 32),
+          ConstrainedBox(
+            constraints: BoxConstraints(
+                maxWidth: ResponsiveHelper.getMaxWidth(context)),
+            child: _buildCertificateCard(context, isMobile),
           ),
         ],
       ),
@@ -406,6 +464,204 @@ class BlogSection extends StatelessWidget {
         ),
         style: TextButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(DesignSystem.radiusMD),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCertificateCard(BuildContext context, bool isMobile) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [CustomColor.bgCard, CustomColor.bgLight1],
+        ),
+        borderRadius: BorderRadius.circular(DesignSystem.radiusLG),
+        border: Border.all(color: Colors.white.withOpacity(0.06), width: 1),
+        boxShadow: DesignSystem.cardShadow,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(
+              horizontal: isMobile ? 20 : 28,
+              vertical: 16,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.03),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(DesignSystem.radiusLG),
+                topRight: Radius.circular(DesignSystem.radiusLG),
+              ),
+              border: Border(
+                bottom: BorderSide(color: Colors.white.withOpacity(0.06)),
+              ),
+            ),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [CustomColor.primary, CustomColor.gradientEnd],
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(Icons.workspace_premium_rounded,
+                      color: Colors.white, size: 18),
+                ),
+                const SizedBox(width: 12),
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Publication Certificate',
+                        style: TextStyle(
+                          fontSize: DesignSystem.fontSizeMD,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const Text(
+                        'MDPI Technologies — Peer Review Certification',
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: DesignSystem.fontSizeSM,
+                          color: CustomColor.textMuted,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // Certificate preview + button
+          Padding(
+            padding: EdgeInsets.all(isMobile ? 20 : 28),
+            child: isMobile
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _buildCertPreview(context),
+                      const SizedBox(height: 16),
+                      _buildViewCertButton(context),
+                    ],
+                  )
+                : Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 280,
+                        child: _buildCertPreview(context),
+                      ),
+                      const SizedBox(width: 28),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Certificate of Publication',
+                              style: TextStyle(
+                                fontSize: DesignSystem.fontSizeLG,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              'This certificate confirms the peer-reviewed publication of '
+                              '"RhythmX™: An Interpretable Self-Supervised Contrastive Learning '
+                              'Framework for Heartbeat Classification" in MDPI Technologies, '
+                              'Vol. 14, Issue 3 (March 2026).',
+                              style: TextStyle(
+                                fontSize: DesignSystem.fontSizeSM,
+                                color: CustomColor.textSecondary,
+                                height: 1.6,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            _buildViewCertButton(context),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCertPreview(BuildContext context) {
+    return GestureDetector(
+      onTap: () => _showCertificate(context),
+      child: Stack(
+        children: [
+          Container(
+            height: 180,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(DesignSystem.radiusMD),
+              border: Border.all(
+                  color: CustomColor.primary.withOpacity(0.2), width: 1),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(DesignSystem.radiusMD),
+              child: Image.asset(
+                _certAsset,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => Container(
+                  color: CustomColor.bgLight1,
+                  child: const Center(
+                    child: Icon(Icons.image_not_supported_rounded,
+                        color: Colors.white24, size: 40),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          // Hover overlay hint
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(DesignSystem.radiusMD),
+                color: Colors.black.withOpacity(0.25),
+              ),
+              child: const Center(
+                child: Icon(Icons.zoom_in_rounded,
+                    color: Colors.white70, size: 32),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildViewCertButton(BuildContext context) {
+    return SizedBox(
+      height: 44,
+      child: OutlinedButton.icon(
+        onPressed: () => _showCertificate(context),
+        icon: const Icon(Icons.open_in_full_rounded, size: 15),
+        label: const Text(
+          'View Certificate',
+          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+        ),
+        style: OutlinedButton.styleFrom(
+          foregroundColor: CustomColor.primary,
+          side: BorderSide(color: CustomColor.primary.withOpacity(0.4)),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(DesignSystem.radiusMD),
           ),

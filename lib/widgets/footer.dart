@@ -45,15 +45,6 @@ class Footer extends StatelessWidget {
               color: CustomColor.textMuted,
             ),
           ),
-          SizedBox(height: 24),
-          Text(
-            "Made with ❤️ using Flutter",
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-              color: CustomColor.textSecondary,
-            ),
-          ),
           SizedBox(height: 8),
           Text(
             "© 2025 Haris Ali Safder. All rights reserved.",

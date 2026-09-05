@@ -111,7 +111,7 @@ class MainDesktop extends StatelessWidget {
                         onPressed: () {
                           final homeState = context.findAncestorStateOfType<HomePageState>();
                           if (homeState != null) {
-                            homeState.scrollToSection(4);
+                            homeState.scrollToSection(5);
                           }
                         },
                         text: "Get in touch",
@@ -126,7 +126,7 @@ class MainDesktop extends StatelessWidget {
                         onPressed: () {
                           final homeState = context.findAncestorStateOfType<HomePageState>();
                           if (homeState != null) {
-                            homeState.scrollToSection(3);
+                            homeState.scrollToSection(4);
                           }
                         },
                         style: OutlinedButton.styleFrom(

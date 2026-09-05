@@ -118,36 +118,36 @@ class HomePageState extends State<HomePage> {
               ),
             ),
             
-            // Experience Section
+            // Publications Section
             Container(
               key: navbarKeys[1],
+              child: const BlogSection(),
+            ),
+
+            // Experience Section
+            Container(
+              key: navbarKeys[2],
               child: const ExperienceSection(),
             ),
             
             // Skills Section
             Container(
-              key: navbarKeys[2],
+              key: navbarKeys[3],
               child: isMobile ? const SkillsMobile() : const SkillsDesktop(),
             ),
             
             // Projects Section
             Container(
-              key: navbarKeys[3],
+              key: navbarKeys[4],
               child: const ProjectsSection(),
             ),
             
             // Education Section
             const EducationSection(),
 
-            // Blog / Publications Section
-            Container(
-              key: navbarKeys[5],
-              child: const BlogSection(),
-            ),
-
             // Contact Section
             Container(
-              key: navbarKeys[4],
+              key: navbarKeys[5],
               child: const ContactSection(),
             ),
             

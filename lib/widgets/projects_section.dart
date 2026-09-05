@@ -412,7 +412,7 @@ class ProjectsSection extends StatelessWidget {
               onPressed: () {
                 final homeState = context.findAncestorStateOfType<HomePageState>();
                 if (homeState != null) {
-                  homeState.scrollToSection(4);
+                  homeState.scrollToSection(5);
                 }
               },
               style: ElevatedButton.styleFrom(

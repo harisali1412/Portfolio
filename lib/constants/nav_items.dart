@@ -9,11 +9,11 @@ class NavItem {
 
 const List<NavItem> navItems = [
   NavItem(title: "Home", icon: Icons.home_rounded),
+  NavItem(title: "Publications", icon: Icons.article_rounded),
   NavItem(title: "Experience", icon: Icons.work_rounded),
   NavItem(title: "Skills", icon: Icons.psychology_rounded),
   NavItem(title: "Projects", icon: Icons.grid_view_rounded),
   NavItem(title: "Contact", icon: Icons.mail_rounded),
-  NavItem(title: "Blog", icon: Icons.article_rounded),
 ];
 
 // Legacy support

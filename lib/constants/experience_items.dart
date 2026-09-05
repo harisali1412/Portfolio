@@ -19,16 +19,16 @@ class ExperienceItem {
 final List<ExperienceItem> experiences = [
   ExperienceItem(
     company: "Glixen Technologies",
-    role: "Flutter Developer",
+    role: "Mobile Application Developer",
     period: "June 2026 - Present",
     location: "Lahore, Pakistan",
     achievements: const [
-      "Maintaining and enhancing AdForest mobile applications built with Flutter",
-      "Diagnosing and resolving application issues including UI, authentication, and API integration",
-      "Managing and troubleshooting the server, WordPress backend, and REST API connectivity",
-      "Customizing the AdForest application per client requirements by implementing new features and modifying existing functionality",
-      "Integrating and maintaining third-party services including Firebase Authentication, phone verification, Google and Facebook Sign-In, and payment features",
-      "Testing application functionality, debugging API responses, and ensuring stable performance across Android devices",
+      "Developing, maintaining, and enhancing production-grade Flutter mobile applications with a focus on reliability, performance, and user experience",
+      "Troubleshooting and resolving complex application issues across UI, authentication, API integration, networking, and third-party services",
+      "Managing and integrating WordPress-based backends and REST APIs, including server-side troubleshooting and API connectivity",
+      "Customizing and extending AdForest applications to meet client requirements by developing new features and optimizing existing functionality",
+      "Integrating and maintaining Firebase Authentication, phone verification, Google and Facebook Sign-In, payment services, push notifications, and other third-party integrations",
+      "Testing, debugging, and optimizing applications across Android devices while ensuring stable API communication and production readiness",
     ],
   ),
   ExperienceItem(
@@ -37,11 +37,11 @@ final List<ExperienceItem> experiences = [
     period: "December 2025 - May 2026",
     location: "Lahore, Pakistan",
     achievements: const [
-      "Built MediTrack, a healthcare application for both doctors and patients",
-      "Built a Chughtai Lab clone application using MVC architecture and GetX state management",
-      "Implemented REST APIs in Python using Flask and integrated them into Flutter via the Dio HTTP client",
-      "Implemented global card payment using Stripe",
-      "Tested widgets, validation and authentication forms, and APIs manually using Postman",
+      "Developed MediTrack, a healthcare mobile application designed to support workflows for both doctors and patients",
+      "Developed a Chughtai Lab-inspired healthcare application using MVC architecture and GetX for scalable state management",
+      "Designed and integrated RESTful APIs using Python and Flask, connecting backend services with Flutter through the Dio HTTP client",
+      "Integrated Stripe to enable secure and globally supported card payment functionality",
+      "Performed comprehensive manual testing of UI components, form validation, authentication flows, APIs, and application functionality using Postman",
     ],
   ),
   ExperienceItem(
@@ -50,9 +50,9 @@ final List<ExperienceItem> experiences = [
     period: "July 2025 - October 2025",
     location: "Lahore, Pakistan",
     achievements: const [
-      "Gained hands-on experience with AWS Cloud Provider, CI/CD pipelines, and staging and production deployments",
-      "Built a code-metrics prototype and stored its data in a database",
-      "Sent prototype summaries to Slack via webhook and visualized metrics in Grafana",
+      "Gained hands-on experience with AWS cloud infrastructure, CI/CD pipelines, and staging and production deployment workflows",
+      "Developed a code-metrics prototype for collecting, processing, and storing software engineering metrics in a database",
+      "Integrated Slack webhooks to automate metric summaries and configured Grafana dashboards for monitoring and visualization",
     ],
   ),
   ExperienceItem(
@@ -61,9 +61,10 @@ final List<ExperienceItem> experiences = [
     period: "August 2023 - September 2023",
     location: "Lahore, Pakistan",
     achievements: const [
-      "Completed a 6-week internship in Mobile App Development using Flutter",
-      "Built Basic Calculator and BMI Calculator applications",
-      "Designed an HBL-like banking application integrated with Firebase for user data management",
+      "Developed mobile applications including a Basic Calculator and BMI Calculator using Flutter",
+      "Designed and developed an HBL-inspired banking application with Firebase integration for user data management",
+      "Gained practical experience in Flutter development, Firebase integration, UI implementation, and application debugging",
     ],
   ),
 ];
+

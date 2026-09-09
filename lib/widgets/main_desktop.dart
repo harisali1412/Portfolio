@@ -87,7 +87,7 @@ class MainDesktop extends StatelessWidget {
                     borderRadius: BorderRadius.circular(DesignSystem.radiusFull),
                   ),
                   child: const Text(
-                    "Mobile Application Developer • Flutter & AI Specialist",
+                    "Full Stack Mobile Application Developer & AI Specialist",
                     style: TextStyle(
                       fontSize: DesignSystem.fontSizeMD,
                       color: CustomColor.textSecondary,

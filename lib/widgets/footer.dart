@@ -38,7 +38,7 @@ class Footer extends StatelessWidget {
           ),
           SizedBox(height: 16),
           Text(
-            "Flutter Developer & Machine Learning Engineer",
+            "Mobile Application Developer & Machine Learning Engineer",
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.normal,

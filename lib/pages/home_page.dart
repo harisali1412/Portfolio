@@ -32,19 +32,19 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    // Initialize keys in initState
     scaffoldKey = GlobalKey<ScaffoldState>();
     scrollController = ScrollController();
     navbarKeys = List.generate(7, (index) => GlobalKey());
-    
-    scrollController.addListener(() {
-      setState(() {
-        showBackToTop = scrollController.offset > 300;
-      });
-    });
+    scrollController.addListener(_handleScroll);
   }
 
-  // Make this method public so other widgets can call it
+  void _handleScroll() {
+    final shouldShowBackToTop = scrollController.offset > 300;
+    if (showBackToTop != shouldShowBackToTop) {
+      setState(() => showBackToTop = shouldShowBackToTop);
+    }
+  }
+
   void scrollToSection(int navIndex) async {
     final key = navbarKeys[navIndex];
     if (key.currentContext != null) {
@@ -58,103 +58,94 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = ResponsiveHelper.isMobile(context);
+    return ValueListenableBuilder<PortfolioPalette>(
+      valueListenable: portfolioPalette,
+      builder: (context, palette, _) {
+        final isMobile = ResponsiveHelper.isMobile(context);
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: CustomColor.scaffoldBg,
-      floatingActionButton: showBackToTop
-          ? FloatingActionButton(
-              onPressed: () {
-                scrollController.animateTo(
-                  0,
-                  duration: DesignSystem.animationDuration,
-                  curve: DesignSystem.animationCurve,
-                );
-              },
-              backgroundColor: CustomColor.primary,
-              child: const Icon(Icons.arrow_upward_rounded, color: Colors.white),
-            )
-          : null,
-      endDrawer: !isMobile
-          ? null
-          : DrawerMobile(
-              onNavItemTap: (int navIndex) {
-                scaffoldKey.currentState?.closeEndDrawer();
-                scrollToSection(navIndex);
-              },
+        return Scaffold(
+          key: scaffoldKey,
+          backgroundColor: CustomColor.scaffoldBg,
+          floatingActionButton: showBackToTop
+              ? FloatingActionButton(
+                  onPressed: () {
+                    scrollController.animateTo(
+                      0,
+                      duration: DesignSystem.animationDuration,
+                      curve: DesignSystem.animationCurve,
+                    );
+                  },
+                  backgroundColor: palette.primary,
+                  child: const Icon(
+                    Icons.arrow_upward_rounded,
+                    color: Colors.white,
+                  ),
+                )
+              : null,
+          endDrawer: !isMobile
+              ? null
+              : DrawerMobile(
+                  onNavItemTap: (int navIndex) {
+                    scaffoldKey.currentState?.closeEndDrawer();
+                    scrollToSection(navIndex);
+                  },
+                ),
+          body: SingleChildScrollView(
+            controller: scrollController,
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                Container(
+                  key: navbarKeys[0],
+                  padding: EdgeInsets.only(top: isMobile ? 0 : 20),
+                  child: Column(
+                    children: [
+                      if (!isMobile)
+                        HeaderDesktop(
+                          onNavMenuTap: (int navIndex) {
+                            scrollToSection(navIndex);
+                          },
+                        )
+                      else
+                        HeaderMobile(
+                          onLogoTap: () {
+                            scrollToSection(0);
+                          },
+                          onMenuTap: () {
+                            scaffoldKey.currentState?.openEndDrawer();
+                          },
+                        ),
+                      if (!isMobile) MainDesktop() else MainMobile(),
+                    ],
+                  ),
+                ),
+                Container(
+                  key: navbarKeys[1],
+                  child: BlogSection(),
+                ),
+                Container(
+                  key: navbarKeys[2],
+                  child: ExperienceSection(),
+                ),
+                Container(
+                  key: navbarKeys[3],
+                  child: isMobile ? SkillsMobile() : SkillsDesktop(),
+                ),
+                Container(
+                  key: navbarKeys[4],
+                  child: ProjectsSection(),
+                ),
+                EducationSection(),
+                Container(
+                  key: navbarKeys[5],
+                  child: ContactSection(),
+                ),
+                Footer(),
+              ],
             ),
-      body: SingleChildScrollView(
-        controller: scrollController,
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            // Home Section
-            Container(
-              key: navbarKeys[0],
-              padding: EdgeInsets.only(top: isMobile ? 0 : 20),
-              child: Column(
-                children: [
-                  if (!isMobile)
-                    HeaderDesktop(
-                      onNavMenuTap: (int navIndex) {
-                        scrollToSection(navIndex);
-                      },
-                    )
-                  else
-                    HeaderMobile(
-                      onLogoTap: () {
-                        scrollToSection(0);
-                      },
-                      onMenuTap: () {
-                        scaffoldKey.currentState?.openEndDrawer();
-                      },
-                    ),
-                  if (!isMobile)
-                    const MainDesktop()
-                  else
-                    const MainMobile(),
-                ],
-              ),
-            ),
-            
-            // Publications Section
-            Container(
-              key: navbarKeys[1],
-              child: const BlogSection(),
-            ),
-
-            // Experience Section
-            Container(
-              key: navbarKeys[2],
-              child: const ExperienceSection(),
-            ),
-            
-            // Skills Section
-            Container(
-              key: navbarKeys[3],
-              child: isMobile ? const SkillsMobile() : const SkillsDesktop(),
-            ),
-            
-            // Projects Section
-            Container(
-              key: navbarKeys[4],
-              child: const ProjectsSection(),
-            ),
-            
-            // Education Section
-            const EducationSection(),
-
-            // Contact Section
-            Container(
-              key: navbarKeys[5],
-              child: const ContactSection(),
-            ),
-            
-            const Footer(),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 

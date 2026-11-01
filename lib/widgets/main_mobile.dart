@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/constants/colors.dart';
 import 'package:portfolio/constants/design_system.dart';
 import 'package:portfolio/widgets/gradient_button.dart';
+import 'package:portfolio/widgets/resume_button.dart';
 import 'package:portfolio/pages/home_page.dart';
 
 class MainMobile extends StatelessWidget {
@@ -20,7 +21,7 @@ class MainMobile extends StatelessWidget {
             height: 180,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              gradient: const LinearGradient(
+              gradient: LinearGradient(
                 colors: [CustomColor.primary, CustomColor.gradientEnd],
               ),
               boxShadow: DesignSystem.glowShadow,
@@ -43,13 +44,13 @@ class MainMobile extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
+              gradient: LinearGradient(
                 colors: [CustomColor.primary, CustomColor.gradientEnd],
               ),
               borderRadius: BorderRadius.circular(DesignSystem.radiusFull),
             ),
             child: const Text(
-              "Available for Work",
+              "Open to Software Engineer roles",
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
@@ -67,13 +68,13 @@ class MainMobile extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           ShaderMask(
-            shaderCallback: (bounds) => const LinearGradient(
+            shaderCallback: (bounds) => LinearGradient(
               colors: [CustomColor.primary, CustomColor.gradientEnd],
             ).createShader(
               Rect.fromLTWH(0, 0, bounds.width, bounds.height),
             ),
             child: const Text(
-              "Haris Ali Safder",
+              "Hafiz Haris Ali Safder",
               style: TextStyle(
                 fontSize: DesignSystem.fontSizeXXL,
                 fontWeight: FontWeight.w700,
@@ -86,7 +87,7 @@ class MainMobile extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           const Text(
-            "Full Stack Mobile Application Developer & AI Specialist",
+            "Software Engineer | Cross-Platform Mobile & AI",
             style: TextStyle(
               fontSize: DesignSystem.fontSizeMD,
               color: CustomColor.textSecondary,
@@ -95,8 +96,8 @@ class MainMobile extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           const Text(
-            "Building impactful mobile applications for healthcare, fintech, "
-            "and AI-powered solutions.",
+            "I build reliable cross-platform products and AI-powered solutions, "
+            "from polished Flutter applications to machine-learning systems for healthcare.",
             style: TextStyle(
               fontSize: DesignSystem.fontSizeMD,
               color: CustomColor.textMuted,
@@ -110,7 +111,8 @@ class MainMobile extends StatelessWidget {
             height: 52,
             child: GradientButton(
               onPressed: () {
-                final homeState = context.findAncestorStateOfType<HomePageState>();
+                final homeState =
+                    context.findAncestorStateOfType<HomePageState>();
                 if (homeState != null) {
                   homeState.scrollToSection(5);
                 }
@@ -125,7 +127,8 @@ class MainMobile extends StatelessWidget {
             height: 52,
             child: OutlinedButton(
               onPressed: () {
-                final homeState = context.findAncestorStateOfType<HomePageState>();
+                final homeState =
+                    context.findAncestorStateOfType<HomePageState>();
                 if (homeState != null) {
                   homeState.scrollToSection(4);
                 }
@@ -150,6 +153,8 @@ class MainMobile extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 8),
+          const ResumeButton(),
         ],
       ),
     );

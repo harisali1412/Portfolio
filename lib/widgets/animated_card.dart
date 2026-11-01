@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:portfolio/constants/design_system.dart';
 
@@ -24,6 +26,7 @@ class _AnimatedCardState extends State<AnimatedCard>
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
+  Timer? _startTimer;
   bool _isInitialized = false;
 
   @override
@@ -47,7 +50,7 @@ class _AnimatedCardState extends State<AnimatedCard>
 
     _isInitialized = true;
     
-    Future.delayed(Duration(milliseconds: widget.delay), () {
+    _startTimer = Timer(Duration(milliseconds: widget.delay), () {
       if (mounted && _isInitialized) {
         _controller.forward();
       }
@@ -57,6 +60,7 @@ class _AnimatedCardState extends State<AnimatedCard>
   @override
   void dispose() {
     _isInitialized = false;
+    _startTimer?.cancel();
     _controller.dispose();
     super.dispose();
   }

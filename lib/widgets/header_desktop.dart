@@ -3,6 +3,7 @@ import 'package:portfolio/widgets/site_logo.dart';
 import '../constants/nav_items.dart';
 import '../constants/colors.dart';
 import '../constants/design_system.dart';
+import 'theme_palette_picker.dart';
 
 class HeaderDesktop extends StatelessWidget {
   const HeaderDesktop({super.key, required this.onNavMenuTap});
@@ -31,6 +32,7 @@ class HeaderDesktop extends StatelessWidget {
           children: [
             SiteLogo(onTap: () {}),
             const SizedBox(width: 24),
+            const ThemePalettePicker(),
             for (int i = 0; i < navTitles.length; i++)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -39,7 +41,8 @@ class HeaderDesktop extends StatelessWidget {
                   style: TextButton.styleFrom(
                     foregroundColor: CustomColor.textSecondary,
                     backgroundColor: Colors.transparent,
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 12),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),

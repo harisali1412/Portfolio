@@ -85,7 +85,7 @@ class EducationSection extends StatelessWidget {
     required IconData icon,
   }) {
     final isMobile = ResponsiveHelper.isMobile(context);
-    
+
     return Container(
       padding: EdgeInsets.all(isMobile ? 16 : 24),
       decoration: BoxDecoration(
@@ -125,7 +125,7 @@ class EducationSection extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
+                gradient: LinearGradient(
                   colors: [CustomColor.primary, CustomColor.gradientEnd],
                 ),
                 borderRadius: BorderRadius.circular(DesignSystem.radiusMD),
@@ -139,7 +139,7 @@ class EducationSection extends StatelessWidget {
                 children: [
                   Text(
                     degree,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: DesignSystem.fontSizeMD,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
@@ -148,7 +148,7 @@ class EducationSection extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     institution,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: DesignSystem.fontSizeSM,
                       color: CustomColor.primary,
                     ),
@@ -173,11 +173,14 @@ class EducationSection extends StatelessWidget {
                   color: CustomColor.textMuted,
                 ),
                 const SizedBox(width: 4),
-                Text(
-                  period,
-                  style: const TextStyle(
-                    fontSize: DesignSystem.fontSizeSM,
-                    color: CustomColor.textMuted,
+                Flexible(
+                  child: Text(
+                    period,
+                    maxLines: 2,
+                    style: const TextStyle(
+                      fontSize: DesignSystem.fontSizeSM,
+                      color: CustomColor.textMuted,
+                    ),
                   ),
                 ),
               ],
@@ -191,11 +194,14 @@ class EducationSection extends StatelessWidget {
                   color: CustomColor.textMuted,
                 ),
                 const SizedBox(width: 4),
-                Text(
-                  location,
-                  style: const TextStyle(
-                    fontSize: DesignSystem.fontSizeSM,
-                    color: CustomColor.textMuted,
+                Flexible(
+                  child: Text(
+                    location,
+                    maxLines: 2,
+                    style: const TextStyle(
+                      fontSize: DesignSystem.fontSizeSM,
+                      color: CustomColor.textMuted,
+                    ),
                   ),
                 ),
               ],
@@ -219,7 +225,7 @@ class EducationSection extends StatelessWidget {
           width: 60,
           height: 60,
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
+            gradient: LinearGradient(
               colors: [CustomColor.primary, CustomColor.gradientEnd],
             ),
             borderRadius: BorderRadius.circular(DesignSystem.radiusMD),
@@ -242,40 +248,51 @@ class EducationSection extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 institution,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: DesignSystem.fontSizeMD,
                   color: CustomColor.primary,
                 ),
               ),
               const SizedBox(height: 4),
-              Row(
+              Wrap(
+                spacing: 16,
+                runSpacing: 8,
                 children: [
-                  const Icon(
-                    Icons.calendar_today,
-                    size: 14,
-                    color: CustomColor.textMuted,
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.calendar_today,
+                        size: 14,
+                        color: CustomColor.textMuted,
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        period,
+                        style: const TextStyle(
+                          fontSize: DesignSystem.fontSizeSM,
+                          color: CustomColor.textMuted,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 6),
-                  Text(
-                    period,
-                    style: const TextStyle(
-                      fontSize: DesignSystem.fontSizeSM,
-                      color: CustomColor.textMuted,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  const Icon(
-                    Icons.location_on,
-                    size: 14,
-                    color: CustomColor.textMuted,
-                  ),
-                  const SizedBox(width: 6),
-                  Text(
-                    location,
-                    style: const TextStyle(
-                      fontSize: DesignSystem.fontSizeSM,
-                      color: CustomColor.textMuted,
-                    ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.location_on,
+                        size: 14,
+                        color: CustomColor.textMuted,
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        location,
+                        style: const TextStyle(
+                          fontSize: DesignSystem.fontSizeSM,
+                          color: CustomColor.textMuted,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

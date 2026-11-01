@@ -4,6 +4,7 @@ import 'package:portfolio/constants/design_system.dart';
 import 'package:portfolio/constants/skills_items.dart';
 import 'package:portfolio/widgets/animated_card.dart';
 import 'package:portfolio/widgets/section_header.dart';
+import 'package:portfolio/widgets/skill_icon.dart';
 
 class SkillsMobile extends StatelessWidget {
   const SkillsMobile({super.key});
@@ -21,12 +22,13 @@ class SkillsMobile extends StatelessWidget {
         children: [
           const SectionHeader(
             title: "Skills & Technologies",
-            subtitle: "Technologies I work with",
+            subtitle: "Cross-platform apps, reliable backends and applied AI",
             alignment: CrossAxisAlignment.center,
           ),
           const SizedBox(height: 48),
           ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: ResponsiveHelper.getMaxWidth(context)),
+            constraints:
+                BoxConstraints(maxWidth: ResponsiveHelper.getMaxWidth(context)),
             child: Column(
               children: [
                 for (int i = 0; i < skillCategories.length; i++)
@@ -93,37 +95,20 @@ class SkillsMobile extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Image.asset(
-                        skill.icon,
-                        width: 18,
-                        height: 18,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            width: 18,
-                            height: 18,
-                            decoration: BoxDecoration(
-                              color: CustomColor.primary.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            child: Center(
-                              child: Text(
-                                skill.name.substring(0, 1),
-                                style: const TextStyle(
-                                  fontSize: 9,
-                                  fontWeight: FontWeight.bold,
-                                  color: CustomColor.primary,
-                                ),
-                              ),
-                            ),
-                          );
-                        },
+                      SkillIcon(
+                        name: skill.name,
+                        assetPath: skill.icon,
+                        size: 18,
                       ),
                       const SizedBox(width: 6),
-                      Text(
-                        skill.name,
-                        style: const TextStyle(
-                          fontSize: DesignSystem.fontSizeSM,
-                          color: CustomColor.textSecondary,
+                      Flexible(
+                        child: Text(
+                          skill.name,
+                          maxLines: 2,
+                          style: const TextStyle(
+                            fontSize: DesignSystem.fontSizeSM,
+                            color: CustomColor.textSecondary,
+                          ),
                         ),
                       ),
                     ],

@@ -67,7 +67,8 @@ class ProjectsSection extends StatelessWidget {
                 : GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 400,
                       crossAxisSpacing: 24,
                       mainAxisSpacing: 24,
@@ -91,11 +92,11 @@ class ProjectsSection extends StatelessWidget {
 
   Widget _buildProjectCard(BuildContext context, ProjectItem project) {
     final isMobile = ResponsiveHelper.isMobile(context);
-    
+
     return Container(
       height: isMobile ? 380 : null,
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
@@ -182,8 +183,11 @@ class ProjectsSection extends StatelessWidget {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [CustomColor.primary, CustomColor.gradientEnd],
+                        gradient: LinearGradient(
+                          colors: [
+                            CustomColor.primary,
+                            CustomColor.gradientEnd
+                          ],
                         ),
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [
@@ -216,7 +220,7 @@ class ProjectsSection extends StatelessWidget {
                 children: [
                   Text(
                     project.title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
@@ -229,7 +233,7 @@ class ProjectsSection extends StatelessWidget {
                   Expanded(
                     child: Text(
                       project.subtitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12,
                         color: CustomColor.textMuted,
                         height: 1.4,
@@ -255,7 +259,7 @@ class ProjectsSection extends StatelessWidget {
                         ),
                         child: Text(
                           tech,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 9,
                             fontWeight: FontWeight.w500,
                             color: CustomColor.primary,
@@ -280,12 +284,11 @@ class ProjectsSection extends StatelessWidget {
                             foregroundColor: CustomColor.primary,
                             side: BorderSide(
                                 color: CustomColor.primary.withOpacity(0.3)),
-                            padding:
-                                const EdgeInsets.symmetric(vertical: 8),
+                            padding: const EdgeInsets.symmetric(vertical: 8),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                           ),
-                          child: const Text(
+                          child: Text(
                             "View Project",
                             style: TextStyle(
                                 fontSize: 13,
@@ -343,8 +346,8 @@ class ProjectsSection extends StatelessWidget {
             content: Text('$label app coming soon! 🚀'),
             backgroundColor: CustomColor.primary,
             behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             margin: const EdgeInsets.all(16),
             duration: const Duration(seconds: 2),
           ),
@@ -353,9 +356,7 @@ class ProjectsSection extends StatelessWidget {
       icon: Icon(icon, size: 11, color: Colors.white),
       label: Text(label,
           style: const TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-              color: Colors.white)),
+              fontSize: 11, fontWeight: FontWeight.w500, color: Colors.white)),
       style: ElevatedButton.styleFrom(
         backgroundColor: CustomColor.primary.withOpacity(0.6),
         shadowColor: Colors.transparent,
@@ -410,7 +411,8 @@ class ProjectsSection extends StatelessWidget {
             height: 44,
             child: ElevatedButton(
               onPressed: () {
-                final homeState = context.findAncestorStateOfType<HomePageState>();
+                final homeState =
+                    context.findAncestorStateOfType<HomePageState>();
                 if (homeState != null) {
                   homeState.scrollToSection(5);
                 }
@@ -429,7 +431,7 @@ class ProjectsSection extends StatelessWidget {
               ),
               child: Ink(
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
+                  gradient: LinearGradient(
                     colors: [CustomColor.primary, CustomColor.gradientEnd],
                   ),
                   borderRadius: BorderRadius.circular(DesignSystem.radiusMD),

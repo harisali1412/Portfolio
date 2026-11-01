@@ -1,16 +1,24 @@
-# portfolio
+# Hafiz Haris Ali Safder — Portfolio
 
-A new Flutter project.
+A responsive Flutter portfolio for a software engineer focused on cross-platform mobile applications and AI-powered products.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Responsive desktop and mobile layouts
+- Five selectable accent colour palettes
+- Skills in Flutter, Android, iOS, backend APIs, and applied AI/ML
+- Resume link served from `web/Resume.pdf`
+- Experience, project, publication, education, and contact sections
 
-A few resources to get you started if this is your first Flutter project:
+## Run locally
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```shell
+flutter pub get
+flutter run -d chrome
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To build the website for deployment:
+
+```shell
+flutter build web
+```

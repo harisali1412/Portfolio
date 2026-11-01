@@ -23,7 +23,8 @@ class ExperienceCard extends StatelessWidget {
         width: 50,
         height: 50,
         fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) => _buildInitialFallback(company),
+        errorBuilder: (context, error, stackTrace) =>
+            _buildInitialFallback(company),
       );
     }
     return _buildInitialFallback(company);
@@ -37,7 +38,7 @@ class ExperienceCard extends StatelessWidget {
       child: Center(
         child: Text(
           company.substring(0, 1),
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
             color: CustomColor.primary,
@@ -49,7 +50,6 @@ class ExperienceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       margin: const EdgeInsets.only(bottom: 24),
       padding: const EdgeInsets.all(24),
@@ -98,7 +98,7 @@ class ExperienceCard extends StatelessWidget {
                   children: [
                     Text(
                       experience.role,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         color: CustomColor.textPrimary,
@@ -107,7 +107,7 @@ class ExperienceCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       experience.company,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                         color: CustomColor.primary,
                       ),
@@ -161,8 +161,8 @@ class ExperienceCard extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 4),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4),
                     child: Icon(
                       Icons.circle,
                       size: 6,

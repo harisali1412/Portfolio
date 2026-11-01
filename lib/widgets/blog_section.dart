@@ -100,14 +100,14 @@ class BlogSection extends StatelessWidget {
           ),
           const SizedBox(height: 48),
           ConstrainedBox(
-            constraints: BoxConstraints(
-                maxWidth: ResponsiveHelper.getMaxWidth(context)),
+            constraints:
+                BoxConstraints(maxWidth: ResponsiveHelper.getMaxWidth(context)),
             child: _buildArticleCard(context, isMobile),
           ),
           const SizedBox(height: 32),
           ConstrainedBox(
-            constraints: BoxConstraints(
-                maxWidth: ResponsiveHelper.getMaxWidth(context)),
+            constraints:
+                BoxConstraints(maxWidth: ResponsiveHelper.getMaxWidth(context)),
             child: _buildCertificateCard(context, isMobile),
           ),
         ],
@@ -138,7 +138,7 @@ class BlogSection extends StatelessWidget {
             width: double.infinity,
             padding: EdgeInsets.all(isMobile ? 20 : 28),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
+              gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [CustomColor.primary, CustomColor.gradientEnd],
@@ -176,8 +176,9 @@ class BlogSection extends StatelessWidget {
                 Text(
                   'RhythmX™: An Interpretable Self-Supervised Contrastive Learning Framework for Heartbeat Classification',
                   style: TextStyle(
-                    fontSize:
-                        isMobile ? DesignSystem.fontSizeLG : DesignSystem.fontSizeXL,
+                    fontSize: isMobile
+                        ? DesignSystem.fontSizeLG
+                        : DesignSystem.fontSizeXL,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                     height: 1.35,
@@ -198,8 +199,8 @@ class BlogSection extends StatelessWidget {
                         'Published: 1 March 2026'),
                     _buildMetaChip(Icons.menu_book_rounded,
                         'Technologies, Vol. 14, Issue 3'),
-                    _buildMetaChip(Icons.tag_rounded,
-                        'DOI: 10.3390/technologies14030148'),
+                    _buildMetaChip(
+                        Icons.tag_rounded, 'DOI: 10.3390/technologies14030148'),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -274,23 +275,26 @@ class BlogSection extends StatelessWidget {
               const Icon(Icons.article_rounded, color: Colors.white, size: 20),
         ),
         const SizedBox(width: 12),
-        const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'MDPI — Technologies',
-              style: TextStyle(
-                fontSize: DesignSystem.fontSizeMD,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
+        const Flexible(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'MDPI — Technologies',
+                style: TextStyle(
+                  fontSize: DesignSystem.fontSizeMD,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
               ),
-            ),
-            Text(
-              'Peer-Reviewed Journal',
-              style: TextStyle(
-                  fontSize: DesignSystem.fontSizeSM, color: Colors.white70),
-            ),
-          ],
+              Text(
+                'Peer-Reviewed Journal',
+                style: TextStyle(
+                    fontSize: DesignSystem.fontSizeSM, color: Colors.white70),
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -329,8 +333,8 @@ class BlogSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: CustomColor.primary.withOpacity(0.08),
         borderRadius: BorderRadius.circular(DesignSystem.radiusMD),
-        border: Border.all(
-            color: CustomColor.primary.withOpacity(0.2), width: 1),
+        border:
+            Border.all(color: CustomColor.primary.withOpacity(0.2), width: 1),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -338,7 +342,7 @@ class BlogSection extends StatelessWidget {
           Icon(Icons.people_alt_rounded,
               size: 16, color: CustomColor.primary.withOpacity(0.8)),
           const SizedBox(width: 8),
-          const Expanded(
+          Expanded(
             child: Text(
               'Abdullah  ·  Zulaikha Fatima  ·  Haris Ali Safder  ·  Mubasher Manzoor  ·  '
               'Carlos G. Sánchez-Mejorada  ·  Miguel J. Torres Ruiz  ·  Rolando Quintero Téllez',
@@ -360,18 +364,23 @@ class BlogSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.05),
         borderRadius: BorderRadius.circular(20),
-        border:
-            Border.all(color: Colors.white.withOpacity(0.08)),
+        border: Border.all(color: Colors.white.withOpacity(0.08)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 13, color: CustomColor.textMuted),
           const SizedBox(width: 6),
-          Text(label,
-              style: const TextStyle(
-                  fontSize: DesignSystem.fontSizeSM,
-                  color: CustomColor.textMuted)),
+          Flexible(
+            child: Text(
+              label,
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: DesignSystem.fontSizeSM,
+                color: CustomColor.textMuted,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -402,7 +411,7 @@ class BlogSection extends StatelessWidget {
           ),
           child: Text(
             kw,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.w500,
               color: CustomColor.primary,
@@ -417,7 +426,7 @@ class BlogSection extends StatelessWidget {
     return Container(
       height: 44,
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           colors: [CustomColor.primary, CustomColor.gradientEnd],
         ),
         borderRadius: BorderRadius.circular(DesignSystem.radiusMD),
@@ -429,9 +438,7 @@ class BlogSection extends StatelessWidget {
         label: const Text(
           'Read Full Article',
           style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: Colors.white),
+              fontSize: 14, fontWeight: FontWeight.w600, color: Colors.white),
         ),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
@@ -459,8 +466,7 @@ class BlogSection extends StatelessWidget {
             size: 16, color: CustomColor.textSecondary),
         label: Text(
           'SciProfiles',
-          style: TextStyle(
-              fontSize: 13, color: CustomColor.textSecondary),
+          style: TextStyle(fontSize: 13, color: CustomColor.textSecondary),
         ),
         style: TextButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -509,7 +515,7 @@ class BlogSection extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(
+                    gradient: LinearGradient(
                       colors: [CustomColor.primary, CustomColor.gradientEnd],
                     ),
                     borderRadius: BorderRadius.circular(8),

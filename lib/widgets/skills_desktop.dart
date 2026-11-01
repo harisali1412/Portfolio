@@ -4,6 +4,7 @@ import 'package:portfolio/constants/design_system.dart';
 import 'package:portfolio/constants/skills_items.dart';
 import 'package:portfolio/widgets/animated_card.dart';
 import 'package:portfolio/widgets/section_header.dart';
+import 'package:portfolio/widgets/skill_icon.dart';
 
 class SkillsDesktop extends StatelessWidget {
   const SkillsDesktop({super.key});
@@ -22,15 +23,14 @@ class SkillsDesktop extends StatelessWidget {
         children: [
           const SectionHeader(
             title: "Skills & Technologies",
-            subtitle: "Technologies I work with",
+            subtitle: "Cross-platform apps, reliable backends and applied AI",
             alignment: CrossAxisAlignment.center,
           ),
           const SizedBox(height: 48),
           ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: ResponsiveHelper.getMaxWidth(context)),
-            child: isMobile
-                ? _buildMobileLayout()
-                : _buildDesktopLayout(),
+            constraints:
+                BoxConstraints(maxWidth: ResponsiveHelper.getMaxWidth(context)),
+            child: isMobile ? _buildMobileLayout() : _buildDesktopLayout(),
           ),
         ],
       ),
@@ -41,7 +41,8 @@ class SkillsDesktop extends StatelessWidget {
     final rows = <Widget>[];
     for (int i = 0; i < skillCategories.length; i += 2) {
       final left = skillCategories[i];
-      final right = i + 1 < skillCategories.length ? skillCategories[i + 1] : null;
+      final right =
+          i + 1 < skillCategories.length ? skillCategories[i + 1] : null;
       rows.add(
         IntrinsicHeight(
           child: Row(
@@ -117,64 +118,47 @@ class SkillsDesktop extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: category.items.map((skill) {
-                return Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 10,
+              return Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 10,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.06),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.08),
+                    width: 1,
                   ),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.06),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: Colors.white.withOpacity(0.08),
-                      width: 1,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SkillIcon(
+                      name: skill.name,
+                      assetPath: skill.icon,
+                      size: 20,
                     ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(
-                        skill.icon,
-                        width: 20,
-                        height: 20,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              color: CustomColor.primary.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            child: Center(
-                              child: Text(
-                                skill.name.substring(0, 1),
-                                style: const TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: CustomColor.primary,
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
                         skill.name,
+                        maxLines: 2,
                         style: const TextStyle(
                           fontSize: DesignSystem.fontSizeSM,
                           color: CustomColor.textSecondary,
                         ),
                       ),
-                      if (skill.proficiency != null) ...[
-                        const SizedBox(width: 8),
-                        _buildProficiencyIndicator(skill.proficiency!),
-                      ],
+                    ),
+                    if (skill.proficiency != null) ...[
+                      const SizedBox(width: 8),
+                      _buildProficiencyIndicator(skill.proficiency!),
                     ],
-                  ),
-                );
-              }).toList(),
-            ),
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
         ],
       ),
     );

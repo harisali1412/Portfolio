@@ -18,7 +18,7 @@ class AchievementBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           colors: [CustomColor.primary, CustomColor.gradientEnd],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,

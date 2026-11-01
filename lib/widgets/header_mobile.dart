@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 import '../constants/design_system.dart';
 import 'site_logo.dart';
+import 'theme_palette_picker.dart';
 
 class HeaderMobile extends StatelessWidget {
   const HeaderMobile({super.key, this.onLogoTap, this.onMenuTap});
@@ -30,6 +31,7 @@ class HeaderMobile extends StatelessWidget {
           children: [
             SiteLogo(onTap: onLogoTap),
             const Spacer(),
+            const ThemePalettePicker(),
             Container(
               decoration: BoxDecoration(
                 color: CustomColor.bgLight2,

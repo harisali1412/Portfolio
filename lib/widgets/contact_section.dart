@@ -83,7 +83,8 @@ class _ContactSectionState extends State<ContactSection> {
         _messageController.clear();
         _showSnackbar("Message sent successfully! 🎉", CustomColor.success);
       } else {
-        _showSnackbar("Failed to send message. Please try again.", CustomColor.error);
+        _showSnackbar(
+            "Failed to send message. Please try again.", CustomColor.error);
       }
     } catch (e) {
       if (!mounted) return;
@@ -140,9 +141,7 @@ class _ContactSectionState extends State<ContactSection> {
           const SizedBox(height: 40),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 900),
-            child: isMobile
-                ? _buildMobileLayout()
-                : _buildDesktopLayout(),
+            child: isMobile ? _buildMobileLayout() : _buildDesktopLayout(),
           ),
         ],
       ),
@@ -166,7 +165,7 @@ class _ContactSectionState extends State<ContactSection> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           colors: [
             CustomColor.bgCard,
             CustomColor.bgLight1,
@@ -183,11 +182,14 @@ class _ContactSectionState extends State<ContactSection> {
         children: [
           Icon(icon, size: 18, color: CustomColor.primary),
           const SizedBox(width: 8),
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: DesignSystem.fontSizeSM,
-              color: CustomColor.textSecondary,
+          Flexible(
+            child: Text(
+              label,
+              maxLines: 2,
+              style: const TextStyle(
+                fontSize: DesignSystem.fontSizeSM,
+                color: CustomColor.textSecondary,
+              ),
             ),
           ),
         ],
@@ -220,7 +222,7 @@ class _ContactSectionState extends State<ContactSection> {
     return Container(
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           colors: [
             CustomColor.bgCard,
             CustomColor.bgLight1,
@@ -279,7 +281,7 @@ class _ContactSectionState extends State<ContactSection> {
               ),
               child: Ink(
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
+                  gradient: LinearGradient(
                     colors: [CustomColor.primary, CustomColor.gradientEnd],
                   ),
                   borderRadius: BorderRadius.circular(DesignSystem.radiusMD),
@@ -339,7 +341,7 @@ class _ContactSectionState extends State<ContactSection> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(DesignSystem.radiusMD),
-          borderSide: const BorderSide(color: CustomColor.primary),
+          borderSide: BorderSide(color: CustomColor.primary),
         ),
         filled: true,
         fillColor: Colors.white.withOpacity(0.05),
@@ -351,7 +353,7 @@ class _ContactSectionState extends State<ContactSection> {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           colors: [
             CustomColor.bgCard,
             CustomColor.bgLight1,
@@ -400,7 +402,7 @@ class _ContactSectionState extends State<ContactSection> {
   Widget _buildSocialButton(String key, String url) {
     return Container(
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           colors: [
             CustomColor.bgCard,
             CustomColor.bgLight1,

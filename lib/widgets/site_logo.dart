@@ -18,7 +18,7 @@ class SiteLogo extends StatelessWidget {
             height: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              gradient: const LinearGradient(
+              gradient: LinearGradient(
                 colors: [CustomColor.primary, CustomColor.gradientEnd],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,

@@ -85,8 +85,11 @@ class ProjectCard extends StatelessWidget {
                         vertical: 6,
                       ),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [CustomColor.primary, CustomColor.gradientEnd],
+                        gradient: LinearGradient(
+                          colors: [
+                            CustomColor.primary,
+                            CustomColor.gradientEnd
+                          ],
                         ),
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -103,7 +106,7 @@ class ProjectCard extends StatelessWidget {
               ],
             ),
           ),
-          
+
           // Project Content
           Padding(
             padding: const EdgeInsets.all(16),
@@ -113,7 +116,7 @@ class ProjectCard extends StatelessWidget {
                 // Title
                 Text(
                   project.title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: CustomColor.textPrimary,
@@ -123,7 +126,7 @@ class ProjectCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 8),
-                
+
                 // Subtitle
                 Text(
                   project.subtitle,
@@ -137,7 +140,7 @@ class ProjectCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 12),
-                
+
                 // Technologies
                 if (project.technologies.isNotEmpty)
                   Wrap(
@@ -155,7 +158,7 @@ class ProjectCard extends StatelessWidget {
                         ),
                         child: Text(
                           tech,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w500,
                             color: CustomColor.primary,
@@ -164,9 +167,9 @@ class ProjectCard extends StatelessWidget {
                       );
                     }).toList(),
                   ),
-                
+
                 const SizedBox(height: 16),
-                
+
                 // Action Buttons
                 _buildActionButtons(context),
               ],
@@ -192,7 +195,7 @@ class ProjectCard extends StatelessWidget {
             onPressed: () => _launchURL(project.webLink!),
             style: OutlinedButton.styleFrom(
               foregroundColor: CustomColor.primary,
-              side: const BorderSide(color: CustomColor.primary),
+              side: BorderSide(color: CustomColor.primary),
               padding: const EdgeInsets.symmetric(vertical: 8),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),
@@ -242,8 +245,8 @@ class ProjectCard extends StatelessWidget {
             content: Text('$label app coming soon! 🚀'),
             backgroundColor: CustomColor.primary,
             behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             margin: const EdgeInsets.all(16),
             duration: const Duration(seconds: 2),
           ),

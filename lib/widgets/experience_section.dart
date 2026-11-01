@@ -28,7 +28,8 @@ class ExperienceSection extends StatelessWidget {
           ),
           const SizedBox(height: 48),
           ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: ResponsiveHelper.getMaxWidth(context)),
+            constraints:
+                BoxConstraints(maxWidth: ResponsiveHelper.getMaxWidth(context)),
             child: Column(
               children: [
                 for (int i = 0; i < experiences.length; i++)
@@ -83,7 +84,7 @@ class ExperienceSection extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       exp.company,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: CustomColor.primary,
                         fontSize: DesignSystem.fontSizeMD,
                         fontWeight: FontWeight.w500,
@@ -121,7 +122,7 @@ class ExperienceSection extends StatelessWidget {
                     height: 8,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      gradient: const LinearGradient(
+                      gradient: LinearGradient(
                         colors: [CustomColor.primary, CustomColor.gradientEnd],
                       ),
                       boxShadow: [
@@ -192,7 +193,7 @@ class ExperienceSection extends StatelessWidget {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
+          gradient: LinearGradient(
             colors: [CustomColor.primary, CustomColor.gradientEnd],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -225,11 +226,14 @@ class ExperienceSection extends StatelessWidget {
         children: [
           Icon(icon, size: 14, color: CustomColor.textMuted),
           const SizedBox(width: 4),
-          Text(
-            text,
-            style: const TextStyle(
-              fontSize: DesignSystem.fontSizeSM,
-              color: CustomColor.textMuted,
+          Flexible(
+            child: Text(
+              text,
+              maxLines: 2,
+              style: const TextStyle(
+                fontSize: DesignSystem.fontSizeSM,
+                color: CustomColor.textMuted,
+              ),
             ),
           ),
         ],

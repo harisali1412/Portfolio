@@ -45,7 +45,7 @@ class GradientButton extends StatelessWidget {
         child: Ink(
           decoration: BoxDecoration(
             gradient: gradient ??
-                const LinearGradient(
+                LinearGradient(
                   colors: [CustomColor.primary, CustomColor.gradientEnd],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,

@@ -22,23 +22,20 @@ class Footer extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Haris Ali Safder",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  fontStyle: FontStyle.italic,
-                  color: CustomColor.textPrimary,
-                ),
-              ),
-            ],
+          Text(
+            "Hafiz Haris Ali Safder",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              fontStyle: FontStyle.italic,
+              color: CustomColor.textPrimary,
+            ),
           ),
           SizedBox(height: 16),
           Text(
-            "Mobile Application Developer & Machine Learning Engineer",
+            "Software Engineer | Cross-Platform Mobile & AI",
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.normal,
@@ -47,7 +44,8 @@ class Footer extends StatelessWidget {
           ),
           SizedBox(height: 8),
           Text(
-            "© 2025 Haris Ali Safder. All rights reserved.",
+            "© 2026 Hafiz Haris Ali Safder. All rights reserved.",
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 12,

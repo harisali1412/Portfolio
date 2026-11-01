@@ -1,11 +1,11 @@
 {
-    "name": "portfolio",
-    "short_name": "portfolio",
+    "name": "Hafiz Haris Ali Safder | Software Engineer",
+    "short_name": "Haris Ali Safder",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0A0A0F",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "theme_color": "#2563EB",
+    "description": "Software Engineer specializing in cross-platform mobile applications and AI-powered products.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
